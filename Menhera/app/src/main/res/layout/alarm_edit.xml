@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#32323A">
+
+	<FrameLayout
+		android:layout_height="60dp"
+		android:layout_width="match_parent"
+		android:background="#252c2e"
+		android:elevation="10dp">
+
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center_vertical">
+
+			<ImageView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:src="@android:drawable/ic_delete"
+				android:layout_marginStart="12dp"
+				android:id="@+id/alarmeditTypeImage"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:text="TextView"
+				android:textColor="#FFFFFF"
+				android:layout_weight="1.0"
+				android:id="@+id/alarmeditTextView"/>
+
+			<Switch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_marginEnd="10dp"
+				android:id="@+id/alarmeditSwitch1"/>
+
+		</LinearLayout>
+
+	</FrameLayout>
+
+	<RadioGroup
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:background="#32323A"
+		android:elevation="5dp"
+		android:id="@+id/alarmeditTypeRadio">
+
+		<RadioButton
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_weight="1.0"
+			android:text="单次"
+			android:textColor="#FFFFFF"
+			android:id="@+id/alarmeditRadioTypeSingle"/>
+
+		<RadioButton
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_weight="1.0"
+			android:text="重复"
+			android:textColor="#FFFFFF"
+			android:id="@+id/alarmeditRadioTypeLoop"/>
+
+		<RadioButton
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_weight="1.0"
+			android:text="每隔"
+			android:textColor="#FFFFFF"
+			android:id="@+id/alarmeditRadioTypeInterval"/>
+
+	</RadioGroup>
+
+	<ScrollView
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_weight="1.0"
+		android:fillViewport="true">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:fillViewport="true">
+
+			<TextView
+				android:layout_width="8848dp"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:text="提醒的说明:"
+				android:textColor="#FFFFFF"
+				android:id="@+id/alarmeditHintText"/>
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ems="20"
+				android:hint="提醒的说明"
+				android:textColor="#FFFFFF"
+				android:inputType="text"
+				android:id="@+id/alarmeditTextDescribe"/>
+
+			<TimePicker
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:timePickerMode="spinner"
+				android:id="@+id/alarmeditTimePicker1"
+				android:visibility="gone"/>
+
+			<DatePicker
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:datePickerMode="spinner"
+				android:calendarViewShown="false"
+				android:id="@+id/alarmeditDatePicker1"
+				android:visibility="gone"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:id="@+id/alarmeditLunarAccording"
+				android:textColor="#B7B7B7"/>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="vertical"
+				android:id="@+id/alarmeditIntervalPannel"
+				android:visibility="gone">
+
+				<LinearLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:orientation="horizontal"
+					android:gravity="center_vertical">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="每隔5天:"
+						android:id="@+id/alarmeditIntervalText"
+						android:textColor="#FFFFFF"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="-"
+						android:padding="1dp"
+						android:onClick="intervalminus"/>
+
+					<SeekBar
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="1.0"
+						android:id="@+id/alarmeditIntervalBar"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="+"
+						android:padding="1dp"
+						android:onClick="intervalplus"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:orientation="horizontal"
+					android:gravity="center_vertical">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="偏移0天:"
+						android:id="@+id/alarmeditOffsetText"
+						android:textColor="#FFFFFF"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="-"
+						android:padding="1dp"/>
+
+					<SeekBar
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="1.0"
+						android:id="@+id/alarmeditOffsetBar"
+						android:onClick="offsetminus"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="+"
+						android:padding="1dp"
+						android:onClick="offsetplus"/>
+
+				</LinearLayout>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:text="下次提醒在:"
+					android:textColor="#FFFFFF"
+					android:id="@+id/alarmeditIntervallyNext"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="vertical"
+				android:gravity="center"
+				android:id="@+id/alarmeditWeekChoose"
+				android:visibility="gone">
+
+				<HorizontalScrollView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content">
+
+					<LinearLayout
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:orientation="horizontal">
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周日"
+							android:textOff="周日"
+							android:textOn="周日"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek1"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周一"
+							android:textOff="周一"
+							android:textOn="周一"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek2"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周二"
+							android:textOff="周二"
+							android:textOn="周二"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek3"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周三"
+							android:textOff="周三"
+							android:textOn="周三"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek4"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周四"
+							android:textOff="周四"
+							android:textOn="周四"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek5"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周五"
+							android:textOff="周五"
+							android:textOn="周五"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek6"/>
+
+						<ToggleButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_weight="1.0"
+							android:text="周六"
+							android:textOff="周六"
+							android:textOn="周六"
+							android:padding="0dp"
+							android:id="@+id/alarmeditWeek7"/>
+
+					</LinearLayout>
+
+				</HorizontalScrollView>
+
+				<LinearLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:orientation="horizontal">
+
+					<CheckBox
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="隔周提醒"
+						android:textColor="#FFFFFF"
+						android:layout_weight="1.0"
+						android:id="@+id/alarmeditWeekDivided"/>
+
+					<CheckBox
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="本周开始"
+						android:textColor="#FFFFFF"
+						android:layout_weight="1.0"
+						android:id="@+id/alarmeditWeekStartNow"/>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="vertical"
+				android:id="@+id/alarmeditCustomAddition"
+				android:layout_marginTop="16dp"
+				android:visibility="gone">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:text="自定义提醒选项"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="提醒的重要性"
+					android:textColor="#FEFEFE"/>
+
+				<RadioGroup
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:orientation="vertical"
+					android:id="@+id/alarmeditImportance">
+
+					<RadioButton
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:id="@+id/alarmeditImptLow"
+						android:text="不重要提醒(仅提醒一次)"
+						android:textColor="#FFFFFF"/>
+
+					<RadioButton
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:id="@+id/alarmeditImptNorm"
+						android:text="一般提醒(错过之后提醒两次)"
+						android:textColor="#FFFFFF"/>
+
+					<RadioButton
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:id="@+id/alarmeditImptHigh"
+						android:text="重要提醒(错过之后继续提醒，直到确认)"
+						android:textColor="#FFFFFF"/>
+
+				</RadioGroup>
+
+				<Button
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:text="提醒方式"
+					android:layout_marginTop="10dp"
+					android:onClick="chooseCustomImg"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="重新提醒/稍后提醒间隔"
+					android:textColor="#FEFEFE"/>
+
+				<LinearLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:orientation="horizontal"
+					android:gravity="center_vertical">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="每隔10分钟:"
+						android:id="@+id/alarmeditDelayText"
+						android:textColor="#FFFFFF"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="-"
+						android:padding="1dp"
+						android:onClick="delayminus"/>
+
+					<SeekBar
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="1.0"
+						android:id="@+id/alarmeditDelayBar"/>
+
+					<Button
+						android:layout_height="40dp"
+						android:layout_width="40dp"
+						android:text="+"
+						android:padding="1dp"
+						android:onClick="delayplus"/>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</ScrollView>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal">
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="算了"
+			android:layout_weight="1.0"
+			android:onClick="cancelAlarm"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="决定"
+			android:layout_weight="1.0"
+			android:onClick="saveAlarm"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

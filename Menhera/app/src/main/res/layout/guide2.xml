@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#f0f0f0">
+
+	<FrameLayout
+		android:layout_height="60dp"
+		android:layout_width="match_parent"
+		android:background="@color/theme_color"
+		android:elevation="5dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="初次见面"
+			android:textColor="#FEFEFE"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="15dp"/>
+
+	</FrameLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_weight="1.0"
+		android:gravity="center">
+
+		<ImageView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:src="@drawable/welcome"
+			android:alpha="0"
+			android:id="@+id/guide2_charimg"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text=""
+			android:textColor="#4B4B4B"
+			android:id="@+id/guide2_chartext"
+			android:lines="3"
+			android:layout_marginLeft="17dp"
+			android:layout_marginRight="17dp"/>
+
+	</LinearLayout>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:text="下一步"
+		android:id="@+id/guide2ButtonNext"
+		android:onClick="onNextBtnClick2"/>
+
+</LinearLayout>
+

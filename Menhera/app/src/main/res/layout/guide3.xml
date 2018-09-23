@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#F0F0F0">
+
+	<FrameLayout
+		android:layout_height="60dp"
+		android:layout_width="match_parent"
+		android:background="@color/theme_color"
+		android:elevation="5dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="个人信息"
+			android:textColor="#FEFEFE"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="15dp"/>
+
+	</FrameLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_weight="1.0">
+
+		<ScrollView
+			android:layout_height="match_parent"
+			android:layout_width="match_parent">
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="vertical">
+
+				<View
+					android:layout_height="10dp"
+					android:layout_width="8848dp"/>
+
+				<FrameLayout
+					android:layout_height="44dp"
+					android:layout_width="match_parent"
+					android:background="#FFFFFF"
+					android:elevation="3dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:layout_marginBottom="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:text="性别"
+						android:gravity="center_vertical"
+						android:layout_gravity="center_vertical"
+						android:paddingLeft="40dp"
+						android:textColor="#000000"/>
+
+					<ImageView
+						android:layout_height="30dp"
+						android:layout_width="30dp"
+						android:src="@drawable/ic_genie"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="5dp"
+						android:tint="@color/theme_color"/>
+
+					<RadioGroup
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:orientation="horizontal"
+						android:gravity="right|center_vertical"
+						android:layout_gravity="right|center_vertical">
+
+						<RadioButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:text="？"
+							android:textAppearance="?android:attr/textAppearanceLarge"
+							android:textStyle="bold"
+							android:id="@+id/guide3RadioSxNone"
+							android:textColor="#000000"
+							android:onClick="onRadioSxNoneClick"/>
+
+						<RadioButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:text="♂"
+							android:textAppearance="?android:attr/textAppearanceLarge"
+							android:textStyle="bold"
+							android:textColor="@color/theme_color"
+							android:id="@+id/guide3RadioSxMale"
+							android:onClick="onRadioSxMaleClick"/>
+
+						<RadioButton
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:text="♀"
+							android:textAppearance="?android:attr/textAppearanceLarge"
+							android:textStyle="bold"
+							android:textColor="@color/theme_color_neg"
+							android:id="@+id/guide3RadioSxFemale"
+							android:onClick="onRadioSxFemaleClick"/>
+
+					</RadioGroup>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:layout_height="44dp"
+					android:layout_width="match_parent"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:background="#FFFFFF"
+					android:elevation="3dp"
+					android:layout_marginBottom="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:text="生日"
+						android:gravity="center_vertical"
+						android:layout_gravity="center_vertical"
+						android:paddingLeft="40dp"
+						android:textColor="#000000"/>
+
+					<ImageView
+						android:layout_height="30dp"
+						android:layout_width="30dp"
+						android:src="@drawable/ic_birthday_cake"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="5dp"
+						android:tint="@color/theme_color"/>
+
+					<Button
+						android:layout_height="match_parent"
+						android:layout_width="match_parent"
+						android:text="未选择  &gt;"
+						android:background="#00000000"
+						android:gravity="right|center_vertical"
+						android:id="@+id/guide3ButtonBirthday"
+						android:onClick="onChooseBirthdayClick"
+						android:textColor="#888888"/>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:layout_height="44dp"
+					android:layout_width="match_parent"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:background="#FFFFFF"
+					android:elevation="3dp"
+					android:layout_marginBottom="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:text="职业"
+						android:gravity="center_vertical"
+						android:layout_gravity="center_vertical"
+						android:paddingLeft="40dp"
+						android:textColor="#000000"/>
+
+					<ImageView
+						android:layout_height="30dp"
+						android:layout_width="30dp"
+						android:src="@drawable/ic_jobstat"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="5dp"
+						android:tint="@color/theme_color"/>
+
+					<Button
+						android:layout_height="match_parent"
+						android:layout_width="match_parent"
+						android:text="未选择  &gt;"
+						android:background="#00000000"
+						android:gravity="right|center_vertical"
+						android:id="@+id/guide3ButtonOccupation"
+						android:onClick="onChooseOccupationClick"
+						android:textColor="#888888"/>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:layout_height="44dp"
+					android:layout_width="match_parent"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:background="#FFFFFF"
+					android:elevation="3dp"
+					android:layout_marginBottom="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:text="称呼"
+						android:gravity="center_vertical"
+						android:layout_gravity="center_vertical"
+						android:paddingLeft="40dp"
+						android:textColor="#000000"/>
+
+					<ImageView
+						android:layout_height="30dp"
+						android:layout_width="30dp"
+						android:src="@drawable/ic_caller"
+						android:layout_gravity="center_vertical"
+						android:layout_marginLeft="5dp"
+						android:tint="@color/theme_color"/>
+
+					<Button
+						android:layout_height="match_parent"
+						android:layout_width="match_parent"
+						android:text="未选择  &gt;"
+						android:background="#00000000"
+						android:gravity="right|center_vertical"
+						android:id="@+id/guide3ButtonCaller"
+						android:onClick="onChooseCallerClick"
+						android:textColor="#888888"/>
+
+				</FrameLayout>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:text="更多设置，转到功能 “个性化” 设置"
+					android:textColor="#808080"
+					android:layout_marginLeft="10dp"
+					android:id="@+id/guide3InfoHinter"/>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+	</LinearLayout>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:text="下一步"
+		android:id="@+id/guide3OkButton"/>
+
+</LinearLayout>
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<View
+		android:layout_height="1dp"
+		android:layout_width="match_parent"/>
+
+	<DatePicker
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:id="@+id/dialogdatapickerDatePicker"
+		android:datePickerMode="spinner"
+		android:calendarViewShown="false"
+		android:foregroundGravity="center"/>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal">
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:text="Medium Text"
+				android:gravity="center"
+				android:id="@+id/dialogdatapickerLunarText"/>
+
+			<CheckBox
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="使用选定日期的农历"
+				android:id="@+id/dialogdatapickerChkBoxUseLunar"
+				android:gravity="left|center_vertical"
+				android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="right|center_vertical">
+
+		<Button
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="取消"
+			android:id="@+id/dialogdatapickerButtonCancel"/>
+
+		<Button
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="好"
+			android:id="@+id/dialogdatapickerButtonOk"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

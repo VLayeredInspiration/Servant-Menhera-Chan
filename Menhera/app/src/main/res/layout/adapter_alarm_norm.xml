@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:orientation="vertical">
+
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1dp"
+		android:layout_width="match_parent"/>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center">
+
+		<ImageView
+			android:layout_height="100dp"
+			android:layout_width="100dp"
+			android:src="@android:drawable/ic_delete"
+			android:id="@+id/adpalarm2TypeImage"
+			android:padding="16dp"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginStart="10dp"
+			android:layout_weight="1.0">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:text="xxxx年x月x日 星期x xx:xx"
+				android:textColor="#FFFFFF"
+				android:id="@+id/adpalarm2TimeText"
+				android:lines="1"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:text="a very very very very very very very long text"
+				android:textColor="#FDFDFD"
+				android:id="@+id/adpalarm2DetailText"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Text"
+				android:textColor="#FFFFFF"
+				android:textSize="9sp"
+				android:id="@+id/adpalarm2PassTime"
+				android:lines="1"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1dp"
+		android:layout_width="match_parent"/>
+
+</LinearLayout>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_margin="30dp"
+		android:background="#a0282836">
+
+		<ImageView
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:src="@android:drawable/ic_delete"
+			android:id="@+id/missedalarmCharImg"/>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="Large Text"
+			android:textColor="#FFFFFF"
+			android:gravity="center"
+			android:id="@+id/missedalarmHintText"/>
+
+		<ListView
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:id="@+id/missedalarmList"
+			android:layout_weight="1.0"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal">
+
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="如何防止这样的事情发生"
+				android:onClick="avoid"
+				android:layout_weight="1.0"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="知道啦"
+				android:onClick="onConfirm"
+				android:layout_weight="1.0"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="108dp"
+	android:orientation="horizontal"
+	android:background="#FFFFFF"
+	android:minHeight="64dp"
+	android:id="@+id/remoteviewbg">
+
+	<ImageView
+		android:layout_height="match_parent"
+		android:layout_width="108dp"
+		android:src="@android:drawable/ic_delete"
+		android:id="@+id/remoteviewImageView1"
+		android:maxHeight="128dp"/>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:gravity="center">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:text="Large Text"
+			android:id="@+id/remoteviewTextView1"
+			android:textColor="#000000"
+			android:gravity="center"
+			android:layout_weight="1.0"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:text="Text"
+			android:gravity="center"
+			android:id="@+id/remoteviewTextView2"
+			android:textColor="#383838"
+			android:layout_marginBottom="5dp"
+			android:textSize="9sp"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

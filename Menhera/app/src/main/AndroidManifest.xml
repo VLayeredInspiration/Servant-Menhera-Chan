@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zyfdroid.smc" >
+	<uses-permission		android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.DEVICE_POWER"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_adaptive"
+        android:label="@string/app_name"
+        android:name=".Main"
+		android:largeHeap="true">
+        <activity
+			android:theme="@android:style/Theme.NoDisplay"
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+			android:excludeFromRecents="true" 
+			android:noHistory="true"
+			android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		<activity android:name=".activity.MenheraActivity" android:theme="@style/DialogTheme"
+			android:excludeFromRecents="true" android:noHistory="true">
+			<intent-filter>
+                <action
+                    android:name="android.intent.action.ASSIST" />
+                <category
+                    android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+			
+			</activity>
+		<activity android:name=".activity.BootActivity" android:theme="@android:style/Theme.NoDisplay"
+			android:excludeFromRecents="true" android:noHistory="true"/>
+		<activity android:name=".activity.MissedAlarmActivity" android:theme="@style/DialogTheme"
+			android:screenOrientation="portrait" android:launchMode="singleTask"/>
+		<activity android:name=".activity.ScheduleActivity" android:theme="@style/ScheTheme" android:screenOrientation="portrait" android:launchMode="singleTask"/>
+		<activity 
+			android:name=".activity.AlarmListActivity"  
+			android:screenOrientation="portrait" 
+			android:theme="@style/AppTheme_Black"
+			android:label="提醒列表"
+			android:launchMode="singleTask">
+		</activity>
+		
+		<activity 
+			android:name=".activity.GuideActivity"  
+			android:screenOrientation="portrait" 
+			android:theme="@style/AppTheme"
+			android:label="初始化"
+			android:launchMode="singleTask">
+		</activity>
+		
+		<activity 
+			android:name=".activity.PreferenceActivity"  
+			android:screenOrientation="portrait" 
+			android:theme="@style/AppTheme"
+			android:label="个性化"
+			android:launchMode="singleTask">
+		</activity>
+		<activity android:name=".activity.AlarmEditActivity" android:screenOrientation="portrait" android:launchMode="singleTask"
+			android:theme="@style/AppTheme_Black"/>
+			<activity android:name=".activity.LogActivity" android:screenOrientation="portrait" android:label="很抱歉，该应用已停止运行。"/>
+		<service android:name=".service.MaimService" android:label="Menhera" />
+		<receiver android:name=".receiver.ScreenOnReceiver">   
+			<intent-filter android:priority="90002">   
+				<action android:name="android.intent.action.USER_PRESENT" />   
+			</intent-filter>   
+		</receiver>   
+		<receiver android:name=".receiver.BootReceiver" >  
+			<intent-filter android:priority="90002">  
+				<action android:name="android.intent.action.BOOT_COMPLETED" />  
+				<category android:name="android.intent.category.DEFAULT" />  
+			</intent-filter>  
+		</receiver>  
+    </application>
+
+</manifest>

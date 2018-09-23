@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center"
+	android:id="@+id/menheraBaseView">
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="wrap_content"
+		android:orientation="horizontal"
+		android:layout_margin="20dp"
+		android:background="#A0282836"
+		android:layout_weight="1.0">
+
+		<FrameLayout
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:layout_weight="1.0">
+
+			<LinearLayout
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:orientation="vertical">
+
+				<ImageView
+					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:src="@drawable/activate"
+					android:id="@+id/clickn_charimg"
+					android:layout_weight="1.0"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:text="Large Text"
+					android:textColor="#FFFFFF"
+					android:gravity="center_horizontal"
+					android:id="@+id/clickn_charsay"
+					android:padding="5dp"
+					android:lines="3"/>
+
+			</LinearLayout>
+
+		</FrameLayout>
+
+		<FrameLayout
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content">
+
+			<LinearLayout
+				android:layout_height="match_parent"
+				android:layout_width="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:text="↓可上下滑动"
+					android:gravity="center"
+					android:textColor="#C6C6C6"/>
+
+				<GridView
+					android:layout_height="match_parent"
+					android:layout_width="75dp"
+					android:id="@+id/notificanclickGridView"/>
+
+			</LinearLayout>
+
+		</FrameLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:gravity="center"
+	android:id="@+id/chartalkdialogLinearLayout1">
+
+	<ImageView
+		android:layout_height="200dp"
+		android:layout_width="match_parent"
+		android:src="@drawable/zimg_2"
+		android:id="@+id/chartalkdialogImageView1"
+		android:alpha="0"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:lines="3"
+		android:id="@+id/chartalkdialogTextView1"
+		android:textSize="15sp"
+		android:text="    "
+		android:gravity="center_horizontal"/>
+
+</LinearLayout>
+

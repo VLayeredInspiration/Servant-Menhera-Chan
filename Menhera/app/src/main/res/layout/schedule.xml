@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center">
+
+	<FrameLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:background="#A0282836"
+		android:foregroundGravity="center"
+		android:padding="18dp">
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="vertical">
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:gravity="center_vertical">
+
+				<ImageView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:src="@android:drawable/ic_delete"
+					android:layout_marginLeft="10dp"
+					android:id="@+id/scheduleTypeIcon"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:text="Large Text"
+					android:textColor="#FFFFFF"
+					android:id="@+id/scheduleTypeTitle"/>
+
+			</LinearLayout>
+
+			<ImageView
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:id="@+id/scheduleCharImage"/>
+
+			<TextClock
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:textColor="#FCFF00"
+				android:layout_gravity="center"
+				android:gravity="center"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:text="Large Text"
+				android:textColor="#FFFFFF"
+				android:gravity="center"
+				android:id="@+id/scheduleTextView"
+				android:maxLines="3"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:text="Small Text"
+				android:id="@+id/scheduleTextDescibe"
+				android:gravity="center"
+				android:textColor="#FEFF81"/>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal">
+
+				<Button
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="推迟10分钟后提醒"
+					android:layout_weight="1.0"
+					android:onClick="delayAlarm"
+					android:visibility="gone"/>
+
+				<Button
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="了解了，关闭"
+					android:layout_weight="1.0"
+					android:onClick="confirmAlarm"
+					android:visibility="gone"/>
+
+				<FrameLayout
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent">
+
+					<SeekBar
+						android:layout_height="wrap_content"
+						android:layout_width="match_parent"
+						android:progressDrawable="@drawable/nothing"
+						android:thumb="@drawable/img_drag"
+						android:id="@+id/scheduleDragger"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceLarge"
+						android:text="《                》"
+						android:layout_gravity="center"
+						android:id="@+id/scheduleAnimSwipe"
+						android:textColor="#FFFFFF"/>
+
+				</FrameLayout>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="了解了，关闭 ←"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="→ 推迟10分钟提醒"
+					android:textColor="#FFFFFF"
+					android:gravity="right"
+					android:layout_weight="1.0"
+					android:id="@+id/scheduleTextMinuteDelay"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</FrameLayout>
+
+</LinearLayout>
+

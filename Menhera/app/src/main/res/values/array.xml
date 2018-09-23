@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+	
+	<resources>
+		<string-array name="bg_notification">
+			<item>粉色</item>
+			<item>米黄</item>
+			<item>淡绿</item>
+			<item>浅蓝</item>
+			<item>洁白</item>
+			<item>鼠灰</item>
+		</string-array>
+		
+		<string-array name="bg_notification_color">
+			<item>00ffddf4</item>
+			<item>00FFFFBA</item>
+			<item>00CBFFB1</item>
+			<item>00B9E6FF</item>
+			<item>00ffffff</item>
+			<item>00aaaaaa</item>
+			
+		</string-array>
+		<string-array name="noti_info_lbl">
+			<item>不显示</item>
+			<item>下一个提醒</item>
+			<item>农历</item>
+			<item>天气</item>
+		</string-array>
+		<string-array name="noti_info">
+			<item>0</item>
+			<item>1</item>
+			<item>2</item>
+			<item>3</item>
+		</string-array>
+	</resources>

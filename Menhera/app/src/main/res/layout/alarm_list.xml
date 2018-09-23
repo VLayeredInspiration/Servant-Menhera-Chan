@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#32323a">
+
+	<FrameLayout
+		android:layout_height="60dp"
+		android:layout_width="match_parent"
+		android:background="#252C2E"
+		android:elevation="5dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:text="提醒列表"
+			android:textColor="#FFFFFF"
+			android:layout_gravity="center_vertical"
+			android:layout_marginStart="16dp"/>
+
+	</FrameLayout>
+
+	<FrameLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+
+		<ListView
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:id="@+id/alarmlistListView"/>
+
+		<Button
+			android:layout_height="49dp"
+			android:layout_width="49dp"
+			android:layout_gravity="bottom|end"
+			android:layout_marginEnd="40dp"
+			android:layout_marginBottom="40dp"
+			android:background="@drawable/alarm_plus"
+			android:onClick="addAlarmClick"/>
+
+	</FrameLayout>
+
+</LinearLayout>
+

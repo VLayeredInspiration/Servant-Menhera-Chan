@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:title="通知栏窗口">
+		<ListPreference
+			android:key="notification_color"
+			android:title="通知的背景色"
+			android:entries="@array/bg_notification"
+			android:entryValues="@array/bg_notification_color"
+			android:dialogTitle="选择一个喜欢的颜色" />
+		
+		<ListPreference
+			android:key="primaryHint"
+			android:title="第一行显示信息"
+			android:entries="@array/noti_info_lbl"
+			android:entryValues="@array/noti_info"/>
+		
+		<ListPreference
+			android:key="secondaryHint"
+			android:title="第二行显示信息"
+			android:entries="@array/noti_info_lbl"
+			android:entryValues="@array/noti_info"/>
+		
+		 
+
+
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="个人信息">
+		
+		
+		
+	<EditTextPreference
+		android:key="caller"
+		android:title="称呼"
+		android:summary="自定义称呼"
+		android:dialogTitle="Menhera应该怎样称呼您？:"
+		android:defaultValue="主人"/>
+	
+	
+	
+	
+	
+		<PreferenceScreen
+			android:key="birthday"
+			android:title="生日"/>
+		
+		
+	
+	
+	
+	
+	
+	
+	</PreferenceCategory>
+	
+	
+	
+	
+	
+	
+	
+</PreferenceScreen>
