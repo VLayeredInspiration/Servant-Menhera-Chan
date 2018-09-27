@@ -123,16 +123,18 @@ public class MaimService extends Service implements Runnable
 							}
 						}
 					}
+					Main.d("startAlarmBatch");
 					for(int i=0;i<ids.length;i++){
 						mal=MyAlarm.loadAlarm(MaimService.this,ids[i]);
-						if(mal.enabled&&mal.targetTime-hookTime>=0&&mal.targetTime-hookTime<60l*1000l){
+						if(mal.enabled&&mal.targetTime-hookTime>=0l&&mal.targetTime-hookTime<60l*1000l){
 							firstAlarmId.add(ids[i]);
-							//Klog.v(new Date(mal.nextTime()));
-							//Klog.v(new Date(hookTime));
-							//Klog.v("end of one");
+							
+							Main.d("[batch]"+new Date(mal.nextTime()));
+							Main.d("[batch]"+new Date(hookTime));
+							Main.d("[batch]end of one");
 						}
 					}
-					
+					Main.d("End of Alarm Batch");
 					
 					
 					if(hookTime!=-1){
@@ -156,7 +158,7 @@ public class MaimService extends Service implements Runnable
 					}catch(Exception e){
 						Main.e(e);
 					}
-					Log.w("menhera","WakeLock Released");
+					
 				}
 				
 			

@@ -49,14 +49,17 @@ public class Main extends Application
 		
 		}
 	public static void d(Object c){
+		synchronized(stdOut){
 		if(!logOn){return;}
 		if(null!=stdOut){
 			stdOut.print(new Date());
 			stdOut.print(":");
 			stdOut.println(c.toString());
 		}
+		}
 	}
 		public static void e(Exception err){
+			synchronized(stdOut){
 			StringBuilder sb=new StringBuilder("发生错误:");
 			sb.append("\n");
 
@@ -71,6 +74,7 @@ public class Main extends Application
 			printWriter.close();  
 			sb.append( writer.toString());  
 			d(sb.toString());
+			}
 		}
 	public static PrintStream stdOut;
 	public static String gs(int id){

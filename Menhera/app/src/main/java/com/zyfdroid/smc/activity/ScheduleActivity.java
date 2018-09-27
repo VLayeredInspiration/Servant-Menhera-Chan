@@ -39,18 +39,18 @@ Vibrator vibrator;
 	public void onPrepareUi()
 	{
 		// TODO: Implement this method
+		alarms=getIntent().getLongArrayExtra("alarms");
+		Main.d("start scheduleActivity, length="+alarms.length);
 		processed=true;
 		super.onPrepareUi();
 		
 		if(null==MaimService.curctx){
 			startService(new Intent(this,MaimService.class));
-			
 		}
 		
-		Main.e(new Exception("getStacks"));
 		setContentView(R.layout.schedule);
 		initUi();
-		alarms=getIntent().getLongArrayExtra("alarms");
+		
 		reReadAlarm();
 		alarmTime=System.currentTimeMillis();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
@@ -114,11 +114,12 @@ Vibrator vibrator;
 		{
 			
 			
-			Main.e(new IllegalStateException("Unexpected alarm at time "+ System.currentTimeMillis() +" with target time "+mal.targetTime));
+			Main.e(new IllegalStateException("Unexpected alarm "+mal.alarmTitle+" at time "+ System.currentTimeMillis() +" with target time "+mal.targetTime));
 			curalm++;
 			if(curalm>=alarms.length){
 			MaimService.curctx.cancelHang();
 			processed=true;
+			resetCheck();
 			finishAndRemoveTask();
 			}else{
 				displayalarm(curalm);
