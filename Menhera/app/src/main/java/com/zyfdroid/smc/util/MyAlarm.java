@@ -279,12 +279,7 @@ public class MyAlarm
 	
 	public long nextWeekAlarmTime(Calendar cld,Date date){
 		if(!enabled){return -1;}
-		cld.set(cld.HOUR_OF_DAY,hour);
-		cld.set(cld.MINUTE,minute);
-		cld.set(cld.SECOND,0);
-		cld.set(cld.MILLISECOND,0);
-		cld.get(cld.MILLISECOND);
-		cld.add(cld.MINUTE,delays*retryInterval);
+		
 		//if(true){throw new IllegalStateException(String.valueOf(isDivideWeek));}
 		if(isDivideWeek){
 			while(oddWeek!=isOddWeek(cld.getTimeInMillis())){
@@ -323,10 +318,12 @@ public class MyAlarm
 		if(isDivideWeek && oddWeek!=isOddWeek(cld.getTimeInMillis())){
 			cld.add(cld.DAY_OF_YEAR,7);
 		}
-		
-		
-		
-		
+		cld.set(cld.HOUR_OF_DAY,hour);
+		cld.set(cld.MINUTE,minute);
+		cld.set(cld.SECOND,0);
+		cld.set(cld.MILLISECOND,0);
+		cld.get(cld.MILLISECOND);
+		cld.add(cld.MINUTE,delays*retryInterval);
 		return cld.getTimeInMillis();
 	}
 	
