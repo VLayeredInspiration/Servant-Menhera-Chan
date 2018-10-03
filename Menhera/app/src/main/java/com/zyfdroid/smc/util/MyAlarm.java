@@ -6,6 +6,7 @@ import android.provider.*;
 import com.zyfdroid.smc.*;
 import com.zyfdroid.smc.activity.*;
 import com.zyfdroid.smc.base.*;
+import java.io.*;
 
 public class MyAlarm
 {
@@ -276,9 +277,43 @@ public class MyAlarm
 		}
 		throw new RuntimeException("Unexpected type:" + type);
 	}
-	
+	//在这堆东西出了n个bug之后决定通通推翻重写
 	public long nextWeekAlarmTime(Calendar cld,Date date){
+		//以周计算的提醒。cld:传入一个日历，date，假定的当前时间，返回下次提醒的时间戳
 		if(!enabled){return -1;}
+		
+		//以防万一
+		if(week.length!=7){
+			throw new IllegalStateException("Wrong Length Of Week Array, Required=7,length="+week.length);
+		}
+		else
+		{
+			boolean legal=false;
+			for(int i=0;i<=6;i++){
+				legal=legal||week[i];
+			}
+			if(!legal){throw new IllegalStateException("No Days Set Yet");}
+		}
+		
+		//计算开始
+		cld.setTimeInMillis(System.currentTimeMillis());
+		cld.set(cld.HOUR_OF_DAY,hour);//千万不要用cld.HOUR，上午下午不分的，害我调试了好久
+		cld.set(cld.MINUTE,minute);//首先设置好时间
+		cld.add(cld.MINUTE,retryInterval*delays);
+		boolean matchTheNeed=false;//循环，判断是否满足需求，满足则打断循环，否则加一天后继续循环
+		while(!matchTheNeed){
+			boolean result=true;//与下面几个条件进行与运算
+			result=result && cld.getTimeInMillis()>date.getTime();//时间判断
+			result=result && week[cld.get(cld.DAY_OF_WEEK)-1];//周判断
+			result=result && ((!isDivideWeek)||(isOddWeek(cld.getTimeInMillis())==oddWeek));//单双周判断
+			matchTheNeed=result;//传回结果
+			if(!matchTheNeed){cld.add(cld.DAY_OF_YEAR,1);}
+		}
+		return cld.getTimeInMillis();
+		//↓什么鬼玩意
+		/*
+		
+		
 		
 		//if(true){throw new IllegalStateException(String.valueOf(isDivideWeek));}
 		if(isDivideWeek){
@@ -324,7 +359,12 @@ public class MyAlarm
 		cld.set(cld.MILLISECOND,0);
 		cld.get(cld.MILLISECOND);
 		cld.add(cld.MINUTE,delays*retryInterval);
+		
+		
+		
+		
 		return cld.getTimeInMillis();
+		*/
 	}
 	
 	
