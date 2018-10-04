@@ -439,7 +439,7 @@ private void changeNotificationImpl21(int avator,String mainstr,String substr){
 		NotificationManager mNotifyMgr = 
 			(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-		NotificationCompat.Builder builder=new NotificationCompat.Builder.;
+		NotificationCompat.Builder builder=new NotificationCompat.Builder(this);
 		//设置状态栏的通知图标
 		builder.setSmallIcon(R.drawable.ic_notifican);
 		//设置通知栏横条的图标

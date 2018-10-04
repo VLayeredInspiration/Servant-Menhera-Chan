@@ -20,6 +20,7 @@ public class Main extends Application
 	public static final int OCUP_WORKER=1;
 	public static final int OCUP_FREE=2;
 	//application inpoint
+	private static Object synclock=new Object();
 	public static final boolean logOn=true;
 	    @Override  
 	    public void onCreate() {  
@@ -49,7 +50,7 @@ public class Main extends Application
 		
 		}
 	public static void d(Object c){
-		synchronized(stdOut){
+		synchronized(synclock){
 		if(!logOn){return;}
 		if(null!=stdOut){
 			stdOut.print(new Date());
@@ -59,7 +60,7 @@ public class Main extends Application
 		}
 	}
 		public static void e(Exception err){
-			synchronized(stdOut){
+			synchronized(synclock){
 			StringBuilder sb=new StringBuilder("发生错误:");
 			sb.append("\n");
 
