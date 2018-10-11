@@ -92,7 +92,7 @@ public class MyAlarm
 	public int alarmimportance=51;
 	
 	public int retryInterval=9;// a wise number
-	public int alarmImage=-1;
+	public int alarmImage=R.drawable.zimg_1;
 	
 	
 	public int month;
