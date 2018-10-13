@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity
 	
 	public void onPrepareUi()
 	{
-		if(isFirstRun()){
+		if(isFirstRun(this)){
 			startActivity(new Intent(this,GuideActivity.class));
 		}else{
 			startService(new Intent(this,MaimService.class));
@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity
 		finish();
 	}
 	
-	boolean isFirstRun(){
+	public static boolean isFirstRun(Context ctx){
 		//TODO:判断跳转启动页
 		return false;
 	}
