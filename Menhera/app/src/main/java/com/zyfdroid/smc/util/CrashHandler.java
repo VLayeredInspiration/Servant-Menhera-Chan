@@ -26,7 +26,8 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.*;
 import android.content.*;
-import com.zyfdroid.smc.activity.*;  
+import com.zyfdroid.smc.activity.*;
+import android.app.PendingIntent.*;  
   
 /** 
   * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告. 
@@ -98,7 +99,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			            @Override  
 			            public void run() {  
 				                Looper.prepare();  
-				                Toast.makeText(mContext, "很抱歉，该应用已停止运行", Toast.LENGTH_LONG).show();  
+				                Toast.makeText(mContext, mContext.getApplicationInfo().name+" 已停止工作\nAndroid正在查找问题，这可能需要几秒钟时间", Toast.LENGTH_LONG).show();  
 				                Looper.loop();  
 			            }  
 		        }.start();  
@@ -119,7 +120,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("crash", logs);
             PendingIntent restartIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, restartIntent); // 1秒钟后重启应用
+            //mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, restartIntent); // 1秒钟后重启应用
 
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(-1);
