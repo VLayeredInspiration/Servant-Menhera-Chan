@@ -1,6 +1,5 @@
 package com.zyfdroid.smc.util;
 import java.util.*;
-import java.time.chrono.*;
 
 public class StateManager
 {
@@ -30,14 +29,14 @@ public class StateManager
 	private void callCalcState(){
 		updateTime();
 		
-		"#Not implement yet.";
+		"Not implement yet.";
 		
 	}
 	private long lastDisturb=-1;
 	public void onDisturb(){
 		lastDisturb=System.currentTimeMillis();
 		
-		"#Not implement yet.";
+		"Not implement yet.";
 	}
 	
 	private long hangTillTime=-1;

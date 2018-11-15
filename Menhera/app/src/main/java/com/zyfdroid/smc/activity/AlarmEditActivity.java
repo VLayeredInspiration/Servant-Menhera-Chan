@@ -340,13 +340,23 @@ boolean stopUpdate=false;
 			alarmeditLunarAccording.setFocusable(true);
 			alarmeditLunarAccording.setFocusableInTouchMode(true);
 			alarmeditLunarAccording.requestFocus();
-			alarmeditLunarAccording.setText("农历参考:"+LunarCalendar.solar2Lunar(tempCalendar).toString());
-			}catch(Exception e){alarmeditLunarAccording.setText("农历参考:无");}
+			
+			alarmeditLunarAccording.setText(dateToText(tempCalendar.getTime())+"\n农历参考:"+LunarCalendar.solar2Lunar(tempCalendar).toString());
+			}catch(Exception e){alarmeditLunarAccording.setText(dateToText(tempCalendar.getTime())+"\n农历参考:无");}
 		}
 		super.onFrame();
 	}
 	
+	String dateToText(Date d){
 	
+	StringBuilder sb=new StringBuilder("在");
+	sb.append(d.getYear()+1900).append("年");
+	String[] arw={"日","一","二","三","四","五","六"};
+	sb.append(d.getMonth()+1).append("月");
+	sb.append(d.getDate()).append("日");
+	sb.append("周").append(arw[d.getDay()]);
+	return sb.toString();
+	}
 	
 	public void intervalminus(View p1){
 		//TODO:Implements this method.

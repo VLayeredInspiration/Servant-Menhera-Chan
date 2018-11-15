@@ -310,61 +310,7 @@ public class MyAlarm
 			if(!matchTheNeed){cld.add(cld.DAY_OF_YEAR,1);}
 		}
 		return cld.getTimeInMillis();
-		//↓什么鬼玩意
-		/*
 		
-		
-		
-		//if(true){throw new IllegalStateException(String.valueOf(isDivideWeek));}
-		if(isDivideWeek){
-			while(oddWeek!=isOddWeek(cld.getTimeInMillis())){
-				
-				while(cld.get(cld.DAY_OF_WEEK)!=cld.SUNDAY){
-				cld.add(cld.DAY_OF_YEAR,1);	
-				}
-				cld.set(cld.HOUR,0);
-				cld.set(cld.MINUTE,0);
-				cld.set(cld.SECOND,0);
-			}
-			
-			//throw new RuntimeException("breakpoint:"+isOddWeek(cld.getTimeInMillis())+oddWeek);
-			
-		}
-		if(week.length!=7){
-			throw new IllegalStateException("Wrong Length Of Week Array, Required=7,length="+week.length);
-		}
-		else
-		{
-			boolean legal=false;
-			for(int i=0;i<=6;i++){
-				legal=legal||week[i];
-			}
-			if(!legal){throw new IllegalStateException("No Days Set Yet");}
-		}
-		if(cld.getTimeInMillis()<date.getTime()){
-			cld.add(cld.DAY_OF_YEAR,1);
-			
-		}
-		cld.get(cld.DAY_OF_WEEK);
-		while(!week[cld.get(cld.DAY_OF_WEEK)-1]){
-			cld.add(cld.DAY_OF_YEAR,1);
-		}
-		
-		if(isDivideWeek && oddWeek!=isOddWeek(cld.getTimeInMillis())){
-			cld.add(cld.DAY_OF_YEAR,7);
-		}
-		cld.set(cld.HOUR_OF_DAY,hour);
-		cld.set(cld.MINUTE,minute);
-		cld.set(cld.SECOND,0);
-		cld.set(cld.MILLISECOND,0);
-		cld.get(cld.MILLISECOND);
-		cld.add(cld.MINUTE,delays*retryInterval);
-		
-		
-		
-		
-		return cld.getTimeInMillis();
-		*/
 	}
 	
 	
