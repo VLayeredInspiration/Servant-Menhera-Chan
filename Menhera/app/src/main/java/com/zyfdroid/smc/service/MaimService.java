@@ -218,7 +218,6 @@ public class MaimService extends Service implements Runnable
 		long[] ids=MyAlarm.getAllAlarm(MaimService.this);
 		for(int i=0;i<ids.length;i++){
 			mal=MyAlarm.loadAlarm(MaimService.this,ids[i]);
-			Main.d("Target="+String.valueOf(mal.targetTime) + ",current="+(System.currentTimeMillis()+60000l));
 			if(mal.targetTime<=System.currentTimeMillis()-90000l){
 				if(mal.enabled){
 					missedAlarmId.add(ids[i]);
@@ -313,8 +312,8 @@ public void changeNotifican(int avator,String mainstr,String substr){
 
 	
 private void changeNotificationImpl26(int avator,String mainstr,String substr){
-	Main.d("ChangeNotification");
-	Main.d(mPowerManager.isScreenOn());
+	Main.d("invoke ChangeNotification");
+	Main.d("IsScreenOn="+mPowerManager.isScreenOn());
 	try{
 		bgcolor=Integer.parseInt(getSharedPreferences("settings",MODE_PRIVATE).getString("notification_color","00ffddf4").trim().toUpperCase(),16)+0xff000000;
 	}catch(Exception e){Main.e(e);}

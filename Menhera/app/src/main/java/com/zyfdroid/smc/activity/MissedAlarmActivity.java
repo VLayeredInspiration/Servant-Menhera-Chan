@@ -79,6 +79,17 @@ public class MissedAlarmActivity extends BaseActivity
 		alarmId=getIntent().getLongArrayExtra("alarms");
 		initUi();
 		missedalarmList.setAdapter(new AlarmAdapter2(this,toLong(alarmId)));
+		
+	}
+
+	@Override
+	public void onUiPrepared()
+	{
+		// TODO: Implement this method
+		super.onUiPrepared();
+		Vibrator vibrator = (Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
+		vibrator.vibrate(1000);
+		
 	}
 
 

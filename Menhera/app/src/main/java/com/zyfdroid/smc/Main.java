@@ -53,8 +53,19 @@ public class Main extends Application
 		synchronized(synclock){
 		if(!logOn){return;}
 		if(null!=stdOut){
-			stdOut.print(new Date());
-			stdOut.print(":");
+			stdOut.print('[');
+			stdOut.print(new Date().toLocaleString());
+			stdOut.print("]");
+			stdOut.print("[");
+			
+			StackTraceElement[] stes=Thread.currentThread().getStackTrace();
+			if(stes.length>3){
+				stdOut.print(stes[3].getFileName());
+				stdOut.print(':');
+				stdOut.print(stes[3].getLineNumber());
+				stdOut.print(']');
+			}
+			
 			stdOut.println(c.toString());
 		}
 		}

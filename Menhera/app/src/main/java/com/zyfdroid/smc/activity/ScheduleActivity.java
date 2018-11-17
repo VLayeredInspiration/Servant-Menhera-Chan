@@ -59,7 +59,7 @@ Vibrator vibrator;
 		mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
 		
 		vibrator = (Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
-		vibrator.vibrate(morningpattern, 0);
+		
 		unlock();
 		FPS=1;
 		curalm=0;
