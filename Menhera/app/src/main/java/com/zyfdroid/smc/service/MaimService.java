@@ -99,7 +99,6 @@ public class MaimService extends Service implements Runnable
 	
 	
 	public void checkScheduleWhileOff(){
-		Main.d("checkScheduleWhileOff");
 		//Log.w("menhera","schedule is running");
 		if(null!=chkScheduleThread){
 			chkScheduleThread.interrupt();
@@ -123,25 +122,18 @@ public class MaimService extends Service implements Runnable
 							}
 						}
 					}
-					Main.d("startAlarmBatch");
 					for(int i=0;i<ids.length;i++){
 						mal=MyAlarm.loadAlarm(MaimService.this,ids[i]);
 						if(mal.enabled&&mal.targetTime-hookTime>=0l&&mal.targetTime-hookTime<60l*1000l){
 							firstAlarmId.add(ids[i]);
-							
-							Main.d("[batch]"+new Date(mal.nextTime()));
-							Main.d("[batch]"+new Date(hookTime));
-							Main.d("[batch]end of one");
 						}
 					}
-					Main.d("End of Alarm Batch");
 					
 					
 					if(hookTime!=-1){
 						long[] alarms=new long[firstAlarmId.size()];
 						for(int i=0;i<firstAlarmId.size();i++){
 							alarms[i]=firstAlarmId.get(i);
-							//Log.w("hera","Alarm "+ alarms[i] +"added to Array");
 						}
 						setAlarmClock(hookTime,alarms);
 					}else{
@@ -152,7 +144,7 @@ public class MaimService extends Service implements Runnable
 					
 
 					try{
-						if(MaimService.this.mWakeLock.isHeld()){
+						if(null!=MaimService.this.mWakeLock&&MaimService.this.mWakeLock.isHeld()){
 					MaimService.this.mWakeLock.release();
 					}
 					}catch(Exception e){
@@ -168,7 +160,6 @@ public class MaimService extends Service implements Runnable
 	
 	synchronized void setAlarmClock(long triggleTime,long[] alarmIds){
 		
-		//for(int i=0;i<alarmIds.length;i++){MyAlarm mals=MyAlarm.loadAlarm(this,alarmIds[i]);Klog.v(mals.nextTime());}
 		
 		Intent i=new Intent(this,ScheduleActivity.class);
 		i.putExtra("alarms",alarmIds);
@@ -187,7 +178,6 @@ public class MaimService extends Service implements Runnable
 	
 	boolean isLockedBefore;
 	public void checkSchedule(){
-		Main.d("checkSchedule");
 		d.setTime(System.currentTimeMillis());
 		status=CharStatus.NORM1;
 		Random r=new Random();
@@ -312,8 +302,7 @@ public void changeNotifican(int avator,String mainstr,String substr){
 
 	
 private void changeNotificationImpl26(int avator,String mainstr,String substr){
-	Main.d("invoke ChangeNotification");
-	Main.d("IsScreenOn="+mPowerManager.isScreenOn());
+	
 	try{
 		bgcolor=Integer.parseInt(getSharedPreferences("settings",MODE_PRIVATE).getString("notification_color","00ffddf4").trim().toUpperCase(),16)+0xff000000;
 	}catch(Exception e){Main.e(e);}
@@ -404,8 +393,7 @@ private void changeNotificationImpl26(int avator,String mainstr,String substr){
 
 private void changeNotificationImpl21(int avator,String mainstr,String substr){
 	
-	Main.d("ChangeNotification");
-	Main.d(mPowerManager.isScreenOn());
+	
 	try{
 		bgcolor=Integer.parseInt(getSharedPreferences("settings",MODE_PRIVATE).getString("notification_color","00ffddf4").trim().toUpperCase(),16)+0xff000000;
 	}catch(Exception e){Main.e(e);}
@@ -514,10 +502,8 @@ private void changeNotificationImpl21(int avator,String mainstr,String substr){
 	}
 	Handler hdl=new Handler();
 	void prepareTask(){
-		Main.d("PrepareTask");
 		if(null==serviceThread||
 			serviceThread.interrupted()){
-				Main.d("TaskPrepared");
 		serviceThread=null;
 		serviceThread=new Thread(this);
 		serviceThread.start();
