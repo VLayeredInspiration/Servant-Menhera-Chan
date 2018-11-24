@@ -2,7 +2,7 @@
 最近热门的表情包Menhera做为虚拟助手来了<br>
 <br>
 
-热烈祝贺我的star上两位数！
+热烈祝贺我的Github star上两位数！
 -
 <br>
 >This project do not compat other languages.<br>
