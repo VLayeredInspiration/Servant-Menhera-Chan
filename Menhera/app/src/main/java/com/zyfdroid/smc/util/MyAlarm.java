@@ -77,10 +77,6 @@ public class MyAlarm
 	public long targetTime;
 	public static final int TYPE_ALARM_ONCE=100;
 	public static final int TYPE_ALARM_WEEKLY=101;
-	
-	
-	
-	
 	public static final int TYPE_ALARM_INTERVAL=102;
 
 	public static final int IMPORTANCE_LOW=50;
@@ -91,7 +87,7 @@ public class MyAlarm
 	public int dayOffset=0;
 	public int alarmimportance=51;
 	
-	public int retryInterval=9;// a wise number
+	public int retryInterval=9;
 	public int alarmImage=R.drawable.zimg_1;
 	
 	

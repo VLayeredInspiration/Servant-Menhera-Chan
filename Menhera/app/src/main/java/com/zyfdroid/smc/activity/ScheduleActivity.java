@@ -351,6 +351,7 @@ boolean canAction=false;
 				if(mal.delays<3){
 				mal.delays+=(isCheck() ? 0 : 1);
 				mal.targetTime=mal.nextTime();
+				
 				mal.saveAlarm(this,alarms[i]);
 				}else{
 					mal.delays=0;
