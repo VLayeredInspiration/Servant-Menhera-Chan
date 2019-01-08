@@ -11,7 +11,6 @@ public class ScreenOnReceiver extends BroadcastReceiver
 	@Override
 	public void onReceive(Context p1, Intent p2)
 	{
-		// TODO: Implement this method
 		if(null!=MaimService.curctx){
 			try{
 				if(p2.getAction().contentEquals(p2.ACTION_SCREEN_OFF)){

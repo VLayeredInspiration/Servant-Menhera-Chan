@@ -16,7 +16,7 @@ public abstract class MyDatePickerDialog extends Dialog{
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_datapicker);
 		initUi();
@@ -42,7 +42,7 @@ public abstract class MyDatePickerDialog extends Dialog{
 				@Override
 				public void onClick(View p1)
 				{
-					// TODO: Implement this method
+					
 					onDatePicked(dialogdatapickerDatePicker.getYear(),dialogdatapickerDatePicker.getMonth(),dialogdatapickerDatePicker.getDayOfMonth(),dialogdatapickerChkBoxUseLunar.isChecked());
 					dismiss();
 
@@ -53,7 +53,7 @@ public abstract class MyDatePickerDialog extends Dialog{
 				@Override
 				public void onClick(View p1)
 				{
-					// TODO: Implement this method
+					
 					//onDatePicked(dialogdatapickerDatePicker.getYear(),dialogdatapickerDatePicker.getMonth(),dialogdatapickerDatePicker.getDayOfMonth(),dialogdatapickerChkBoxUseLunar.isChecked());
 					dismiss();
 
@@ -66,7 +66,7 @@ public abstract class MyDatePickerDialog extends Dialog{
 				@Override
 				public void onDateChanged(DatePicker p1, int p2, int p3, int p4)
 				{
-					// TODO: Implement this method
+					
 					try{
 						if(null==tempCalendar){
 							tempCalendar=Calendar.getInstance();
@@ -103,7 +103,7 @@ public abstract class MyDatePickerDialog extends Dialog{
 	@Override
 	public void onBackPressed()
 	{
-		// TODO: Implement this method
+		
 		super.onBackPressed();
 		dismiss();
 	}

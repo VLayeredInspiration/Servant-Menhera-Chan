@@ -34,6 +34,6 @@ public enum CharStatus
 	public String barText;
 	public int clicknImg;
 	public String clicknText;
-	public CharStatus(int mcharImg,String mbarText,int mclicknImg,String mclicknText){charImg=mcharImg;barText=mbarText;clicknImg=mclicknImg;clicknText=mclicknText;}
+	CharStatus(int mcharImg, String mbarText, int mclicknImg, String mclicknText){charImg=mcharImg;barText=mbarText;clicknImg=mclicknImg;clicknText=mclicknText;}
 }
 

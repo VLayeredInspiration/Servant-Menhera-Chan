@@ -31,8 +31,7 @@ UI渣(程序员那完全不存在的审美)欢迎指点<br>
 
 >https://github.com/a-wing/Menhera-chan
 
-[下载APK文件（点进去后点右上角Download）](Menhera/app/build/bin/app.apk)
-gitlab可能不同
+项目已经迁移至Android Studio,将不再（无法）提供APK的下载
 
 <br>
 <br>

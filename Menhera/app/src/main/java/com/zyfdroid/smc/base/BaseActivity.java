@@ -7,6 +7,7 @@ import android.graphics.*;
 import android.graphics.drawable.*;
 import android.media.*;
 import android.os.*;
+import android.support.annotation.RequiresApi;
 import android.text.*;
 import android.util.*;
 import android.view.*;
@@ -34,7 +35,7 @@ public boolean canshowhelp=true;;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		if(isHiddenTitleBar()){this.requestWindowFeature(Window.FEATURE_NO_TITLE);}
 		if(isFullScreen()){this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);		}
@@ -44,14 +45,14 @@ public boolean canshowhelp=true;;
 				@Override
 				public void run()
 				{
-					// TODO: Implement this method
+					
 					Runnable UiTask=new Runnable(){
 
 						@Override
 						public void run()
 						{
 							onFrame();
-							// TODO: Implement this method
+							
 						}
 					};
 					try
@@ -65,7 +66,6 @@ public boolean canshowhelp=true;;
 							@Override
 							public void run()
 							{
-								// TODO: Implement this metho
 								onUiPrepared();
 							}
 						});
@@ -95,7 +95,7 @@ public boolean canshowhelp=true;;
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus)
 	{
-		// TODO: Implement this method
+		
 		super.onWindowFocusChanged(hasFocus);
 		if(isCreating){
 			isCreating=false;
@@ -110,7 +110,7 @@ public boolean canshowhelp=true;;
 	@Override
 	protected void onDestroy()
 	{
-		// TODO: Implement this method
+		
 		FrameThread.interrupt();
 		super.onDestroy();
 
@@ -202,7 +202,7 @@ public boolean canshowhelp=true;;
 			TextView txv=new TextView(this);
 			txv.setText(l(text));
 			try{
-				TextViewCompat.setTextAppearance(txv,android.R.attr.textAppearanceLarge);
+				TextViewCompat.setTextAppearance(txv,android.R.style.TextAppearance_Large);
 			//txv.setTextAppearance(android.R.attr.textAppearanceLarge);
 			}catch(NoSuchMethodError e){}
 			ll.addView(imv);
@@ -216,7 +216,7 @@ public boolean canshowhelp=true;;
 					@Override
 					public void onClick(DialogInterface p1, int p2)
 					{
-						// TODO: Implement this method
+						
 						savestate("help_" +helpflag,"showed");
 					}
 				});
@@ -227,7 +227,7 @@ public boolean canshowhelp=true;;
 				adb.create().show();}}
 	}
 
-	public void mtw(String text,int imageid){
+	public void mtw(String text, int imageid){
 		Toast t=Toast.makeText(this,text,Toast.LENGTH_LONG);
 		LinearLayout ll=new LinearLayout(this);
 		ll.setGravity(Gravity.CENTER);
@@ -237,7 +237,13 @@ public boolean canshowhelp=true;;
 		TextView txv=new TextView(this);
 		txv.setText(l(text));
 		txv.setTextColor(0xffffffff);
-		txv.setTextAppearance(android.R.attr.textAppearanceLarge);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			txv.setTextAppearance(android.R.style.TextAppearance_Large);
+		}
+		else
+		{
+			TextViewCompat.setTextAppearance(txv,android.R.style.TextAppearance_Large);
+		}
 		ll.addView(imv);
 		ll.addView(txv);
 		ll.setBackgroundColor(0xa0282836);
@@ -279,7 +285,7 @@ public boolean canshowhelp=true;;
 		pannel.addView(tv);
 		pannel.addView(imv);
 		t.setView(pannel);
-		t.setDuration(5);
+		t.setDuration(Toast.LENGTH_LONG);
 		t.show();
 	}
 
@@ -302,7 +308,7 @@ public boolean canshowhelp=true;;
 		pannel.addView(tv);
 		pannel.addView(imv);
 		t.setView(pannel);
-		t.setDuration(5);
+		t.setDuration(Toast.LENGTH_LONG);
 		t.show();
 	}
 	public void prevPic(int resid){//change4
@@ -324,7 +330,7 @@ public boolean canshowhelp=true;;
 		pannel.addView(tv);
 		pannel.addView(imv);
 		t.setView(pannel);
-		t.setDuration(5);
+		t.setDuration(Toast.LENGTH_LONG);
 		t.show();
 	}
 
@@ -447,7 +453,7 @@ public void tw(Object text)
 Toast.makeText(this,l(text.toString()),Toast.LENGTH_LONG).show();
 }
 public static void syso(Object p1){
-	android.util.Log.d("com.semssjbcs.servantmanhera",p1.toString());
+	android.util.Log.d("com.zyfdroid.smc",p1.toString());
 	Klog.v(p1);
 }
 public Button fbi(int id){

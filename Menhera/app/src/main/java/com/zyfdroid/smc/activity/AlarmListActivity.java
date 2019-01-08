@@ -17,7 +17,7 @@ public class AlarmListActivity extends BaseActivity
 	@Override
 	public void onPrepareUi()
 	{
-		// TODO: Implement this method
+		
 		setContentView(R.layout.alarm_list);
 		ctx=this;
 	}
@@ -30,7 +30,7 @@ public class AlarmListActivity extends BaseActivity
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					onChooseAlarm(p2);
 				}
 			});
@@ -61,7 +61,7 @@ public class AlarmListActivity extends BaseActivity
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					onAlarmAction(longclickedItemId,p2);
 				}
 			});
@@ -124,7 +124,7 @@ public class AlarmListActivity extends BaseActivity
 	@Override
 	public void onBackPressed()
 	{
-		// TODO: Implement this method
+		
 		if(null!=MaimService.curctx){
 		MaimService.curctx.checkScheduleWhileOff();
 		}else{
@@ -147,7 +147,7 @@ public class AlarmListActivity extends BaseActivity
 				@Override
 				public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4)
 				{
-					// TODO: Implement this method
+					
 					onAlarmClick(Long.valueOf(adl.getItem((int)p4)));
 				}
 			});
@@ -156,7 +156,7 @@ public class AlarmListActivity extends BaseActivity
 				@Override
 				public boolean onItemLongClick(AdapterView<?> p1, View p2, int p3, long p4)
 				{
-					// TODO: Implement this method
+					
 					onAlarmLongClick(Long.valueOf(adl.getItem((int)p4)));
 					return true;
 				}
@@ -171,7 +171,7 @@ public class AlarmListActivity extends BaseActivity
 	@Override
 	protected void onResume()
 	{
-		// TODO: Implement this method
+		
 		super.onResume();
 		loadAlarmList();
 	}
@@ -189,7 +189,7 @@ static AlarmListActivity ctx;
 	@Override
 	public boolean isHiddenTitleBar()
 	{
-		// TODO: Implement this method
+		
 		return true;
 	}
 	
@@ -222,7 +222,7 @@ public View getView(int position, View convertView, ViewGroup parent)
 			@Override
 			public void onCheckedChanged(CompoundButton p1, boolean p2)
 			{
-				// TODO: Implement this method
+				
 				MyAlarm mal=MyAlarm.loadAlarm(getContext(),Long.valueOf(getItem((int)p1.getTag())));
 				mal.enabled=p2;
 				if(mal.enabled){mal.targetTime=mal.nextTime();}
@@ -246,7 +246,7 @@ class AADP extends ArrayAdapter<String>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		// TODO: Implement this method
+		
 		LayoutInflater lyf=LayoutInflater.from(getContext());
 		View v0=lyf.inflate(R.layout.altp,parent,false);
 		((ImageView)v0.findViewById(R.id.altpImageView1)).setImageResource(MyAlarm.typeIcons[position]);

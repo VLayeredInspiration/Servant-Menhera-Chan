@@ -10,7 +10,6 @@ public class LogActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.logs);
 		String logs=getIntent().getExtras().getString("crash");

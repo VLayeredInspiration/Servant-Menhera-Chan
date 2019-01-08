@@ -18,7 +18,6 @@ public class BootActivity extends BaseActivity
 	@Override
 	protected void onResume()
 	{
-		// TODO: Implement this method
 		super.onResume();
 		if(!MainActivity.isFirstRun(this)){
 		try{

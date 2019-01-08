@@ -1,10 +1,5 @@
-/Menhera/app/build/gen
-/Menhera/app/build/bin/classesdebug
-/Menhera/app/build/bin/classesrelease
-/Menhera/app/build/bin/injected
-/Menhera/app/build/bin/jardex
-/Menhera/app/build/bin/merged
-/Menhera/app/build/bin/res
-/Menhera/app/build/bin/resources.ap_
-/Menhera/app/build/bin/classes.dex
+/Menhera/app/build
+/Menhera/build
+/Menhera/.gradle
+/Menhera/.idea
 *.bak

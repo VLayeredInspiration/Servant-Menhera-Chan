@@ -25,7 +25,7 @@ public class MenheraActivity extends BaseActivity
 	@Override
 	public void onPrepareUi()
 	{
-		// TODO: Implement this method
+		
 		
 		//getWindow().setWindowAnimations(R.style.anim_menhera);
 		overridePendingTransition(R.anim.appear,R.anim.disappear);
@@ -60,7 +60,7 @@ public class MenheraActivity extends BaseActivity
 	@Override
 	public void onUiPrepared()
 	{
-		// TODO: Implement this method
+		
 		CharStatus cst=CharStatus.NORM1;
 		try{
 			if(null!=MaimService.curctx.status){
@@ -104,7 +104,7 @@ public class MenheraActivity extends BaseActivity
 				@Override
 				public void onItemClick(AdapterView<?> p1, View p2, int p3, long p4)
 				{
-					// TODO: Implement this method
+					
 					HashMap<String,Object> item=(HashMap<String,Object>)p1.getAdapter().getItem(p3);
 					onIntentedOnClickListener(Main.appFunctions.get((String)item.get("tag")).activityClass);
 				}
@@ -171,20 +171,20 @@ boolean misFinishing=false;
 				@Override
 				public void onAnimationStart(Animation p1)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onAnimationEnd(Animation p1)
 				{
-					// TODO: Implement this method
+					
 					finish();
 				}
 
 				@Override
 				public void onAnimationRepeat(Animation p1)
 				{
-					// TODO: Implement this method
+					
 				}
 			});
 			anime.setInterpolator(this,android.R.anim.anticipate_interpolator);
@@ -205,7 +205,7 @@ boolean misFinishing=false;
 	@Override
 	public void finish()
 	{
-		// TODO: Implement this method
+		
 		super.finish();
 		overridePendingTransition(R.anim.appear,R.anim.disappear);
 	}
@@ -237,7 +237,7 @@ class IntentedOnClickListener implements View.OnClickListener
 	@Override
 	public void onClick(View p1)
 	{
-		// TODO: Implement this method
+		
 		if(null!=srcctx&&null!=clickIntent){
 			srcctx.startActivity(clickIntent);
 		}

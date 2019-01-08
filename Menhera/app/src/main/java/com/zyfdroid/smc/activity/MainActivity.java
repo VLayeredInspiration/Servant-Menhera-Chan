@@ -50,7 +50,6 @@ public class MainActivity extends BaseActivity
 	@Override
 	public boolean isHiddenTitleBar()
 	{
-		// TODO: Implement this method
 		return true;
 	}
 	

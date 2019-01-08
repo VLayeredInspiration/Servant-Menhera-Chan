@@ -4,6 +4,7 @@ import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.graphics.*;
+import android.support.annotation.RequiresApi;
 import android.widget.*;
 import java.io.*;
 import android.util.*;
@@ -51,7 +52,7 @@ public class MaimService extends Service implements Runnable
 	@Override
 	public void onCreate()
 	{
-		// TODO: Implement this method
+		
 		super.onCreate();
 		curctx=this;
 		serviceThread=null;
@@ -222,7 +223,6 @@ public class MaimService extends Service implements Runnable
 			mids[i]=missedAlarmId.get(i);
 		}
 		if(mids.length!=0){
-		//TODO:event after missed alarm
 		Intent i=new Intent(this,MissedAlarmActivity.class);
 		i.putExtra("alarms",mids);
 		i.addFlags(i.FLAG_ACTIVITY_NEW_TASK);
@@ -301,7 +301,8 @@ public void changeNotifican(int avator,String mainstr,String substr){
 }
 
 	
-private void changeNotificationImpl26(int avator,String mainstr,String substr){
+@RequiresApi(api = Build.VERSION_CODES.N)
+private void changeNotificationImpl26(int avator, String mainstr, String substr){
 	
 	try{
 		bgcolor=Integer.parseInt(getSharedPreferences("settings",MODE_PRIVATE).getString("notification_color","00ffddf4").trim().toUpperCase(),16)+0xff000000;
@@ -358,7 +359,7 @@ private void changeNotificationImpl26(int avator,String mainstr,String substr){
 		builder.setStyle(new Notification.BigTextStyle());
 		builder.setCustomContentView(rvs);
 		builder.setCustomBigContentView(rvs);
-		builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
+		builder.setVisibility(Notification.VISIBILITY_SECRET);
 		Intent tgt;
 		if(hangTill<System.currentTimeMillis()){
 			tgt=new Intent(this,MenheraActivity.class);
@@ -485,7 +486,7 @@ private void changeNotificationImpl21(int avator,String mainstr,String substr){
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId)
 	{
-		// TODO: Implement this method
+		
 		Main.d("onStartCommand");
 		if(fg){createNotificatiion();}
 			prepareTask();
@@ -572,7 +573,7 @@ private void changeNotificationImpl21(int avator,String mainstr,String substr){
 				builder.setCustomContentView(rvs);
 				builder.setCustomBigContentView(rvs);
 				builder.setContentIntent(PendingIntent.getActivity(this,0,new Intent(this,MenheraActivity.class),0));
-				builder.setVisibility(NotificationCompat.VISIBILITY_SECRET);
+				builder.setVisibility(Notification.VISIBILITY_SECRET);
 			NotificationManager mNotifyMgr = 
 				(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 				
@@ -597,7 +598,7 @@ private void changeNotificationImpl21(int avator,String mainstr,String substr){
 	@Override
 	public void onDestroy()
 	{
-		// TODO: Implement this method
+		
 		Main.d("OnDestory");
 		if(null!=serviceThread){serviceThread.interrupt();}
 		curctx=null;

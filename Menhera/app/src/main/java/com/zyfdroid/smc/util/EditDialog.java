@@ -20,7 +20,7 @@ public abstract class EditDialog extends Dialog
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		setTitle(title);
 		LinearLayout base=new LinearLayout(ctx);
@@ -45,7 +45,7 @@ public abstract class EditDialog extends Dialog
 				@Override
 				public void onClick(View p1)
 				{
-					// TODO: Implement this method
+					
 					EditDialog.this.dismiss();
 				}
 			});
@@ -55,7 +55,7 @@ public abstract class EditDialog extends Dialog
 				@Override
 				public void onClick(View p1)
 				{
-					// TODO: Implement this method
+					
 					onConfirmText(edt.getText().toString());
 					dismiss();
 				}
@@ -66,7 +66,7 @@ public abstract class EditDialog extends Dialog
 	}
 
 
-	public abstract void onConfirmText(String text)
+	public abstract void onConfirmText(String text);
 }
 
 

@@ -22,7 +22,7 @@ public class MissedAlarmActivity extends BaseActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		if(null!=lastctx){
 			try{
@@ -52,7 +52,6 @@ public class MissedAlarmActivity extends BaseActivity
 		missedalarmHintText.setText(l("真是非常抱歉！我把[称呼]的事情给忘了！"));
 	}
 	public void onConfirm(View p1){
-		//TODO:Implements this method.
 		for(int i=0;i<alarmId.length;i++){
 			MyAlarm mal=MyAlarm.loadAlarm(this,alarmId[i]);
 			mal.targetTime=mal.nextDayTime();
@@ -85,7 +84,7 @@ public class MissedAlarmActivity extends BaseActivity
 	@Override
 	public void onUiPrepared()
 	{
-		// TODO: Implement this method
+		
 		super.onUiPrepared();
 		Vibrator vibrator = (Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
 		vibrator.vibrate(1000);
@@ -102,7 +101,7 @@ public class MissedAlarmActivity extends BaseActivity
 	@Override
 	protected void onDestroy()
 	{
-		// TODO: Implement this method
+		
 		lastctx=null;
 		super.onDestroy();
 	}
@@ -147,8 +146,7 @@ class AlarmAdapter2 extends ArrayAdapter<Long>{
 		adpalarm2TimeText.setText(mal.getNextStr());
 		adpalarm2DetailText.setText(mal.getTypeTitle()+(mal.alarmTitle.trim().isEmpty() ? "" : ":")+((MissedAlarmActivity)getContext()).l(mal.alarmTitle));
 		adpalarm2PassTime.setText("超时"+timeToText(System.currentTimeMillis()-mal.targetTime));
-		//TODO:Implement this method.
-		
+
 		return v;
 	}
 	String timeToText(long t){

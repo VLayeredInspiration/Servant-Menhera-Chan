@@ -102,7 +102,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onCheckedChanged(CompoundButton p1, boolean p2)
 				{
-					// TODO: Implement this method
+					
 					alarmeditWeekStartNow.setEnabled(p2);
 					if(p2){
 						showHelp("什么是隔周提醒？","当提醒需要区分单周和双周的时候，可以用到它。打开之后可以做到一周提醒一周不提醒。可以用右边的选项决定哪一周提醒，例如如果本周开始提醒的话，就是本周有提醒，下周无提醒，下下周再有提醒，本周无提醒则是下周开始有提醒，下下周无提醒，以此类推。\nP.S.每周从周日开始",R.drawable.confused,"what_is_oddweek");
@@ -115,7 +115,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onCheckedChanged(RadioGroup p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					if(currentAlarm.scheType==currentAlarm.TYPE_SCHE_CUSTOM){
 						switch(p2){
 							case R.id.alarmeditImptLow:
@@ -138,7 +138,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onProgressChanged(SeekBar p1, int p2, boolean p3)
 				{
-					// TODO: Implement this method
+					
 					alarmeditOffsetBar.setMax(p2);
 					alarmeditIntervalText.setText("每隔" + (p2+1) +"天:");
 					currentAlarm.dayInterval=p2+1;
@@ -150,13 +150,13 @@ MyAlarm currentAlarm;
 				@Override
 				public void onStartTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onStopTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 			});
 		alarmeditOffsetBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener(){
@@ -164,7 +164,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onProgressChanged(SeekBar p1, int p2, boolean p3)
 				{
-					// TODO: Implement this method
+					
 					alarmeditOffsetText.setText("偏移" + (p2+1) +"天:");
 					currentAlarm.dayOffset=p2+1;
 					currentAlarm.targetTime=currentAlarm.nextTime();
@@ -174,13 +174,13 @@ MyAlarm currentAlarm;
 				@Override
 				public void onStartTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onStopTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 			});
 			
@@ -190,7 +190,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onProgressChanged(SeekBar p1, int p2, boolean p3)
 				{
-					// TODO: Implement this method
+					
 					alarmeditDelayText.setText("推迟" + (p2+1) +"分钟:");
 					currentAlarm.retryInterval=p2+1;
 					}
@@ -198,13 +198,13 @@ MyAlarm currentAlarm;
 				@Override
 				public void onStartTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onStopTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 			});
 			
@@ -215,7 +215,7 @@ MyAlarm currentAlarm;
 			@Override
 			public void onClick(View p1)
 			{
-				// TODO: Implement this method
+				
 				onRechooseType();
 			}
 		};
@@ -233,7 +233,7 @@ MyAlarm currentAlarm;
 				
 				public void onCheckedChanged(int clickedId)
 				{
-					// TODO: Implement this method
+					
 					switch(clickedId){
 						case R.id.alarmeditRadioTypeSingle:
 						currentAlarm.type=currentAlarm.TYPE_ALARM_ONCE;
@@ -283,7 +283,7 @@ MyAlarm currentAlarm;
 				@Override
 				public void onTimeChanged(TimePicker p1, int p2, int p3)
 				{
-					// TODO: Implement this method
+					
 					if(!isTimeListenerLocked){
 					tarHour=p2;
 					tarMinute=p3;
@@ -300,7 +300,7 @@ MyAlarm currentAlarm;
 				@Override
 				public boolean onTouch(View p1, MotionEvent p2)
 				{
-					// TODO: Implement this method
+					
 					
 					if(p2.getAction()==p2.ACTION_DOWN){stopUpdate=false;}
 					if(p2.getAction()==p2.ACTION_UP){stopUpdate=true;}
@@ -317,7 +317,7 @@ boolean stopUpdate=false;
 	@Override
 	public void onFrame()
 	{
-		// TODO: Implement this method
+		
 		if(null==tempCalendar){
 			tempCalendar=Calendar.getInstance();
 		}
@@ -359,14 +359,14 @@ boolean stopUpdate=false;
 	}
 	
 	public void intervalminus(View p1){
-		//TODO:Implements this method.
+		
 		if(alarmeditIntervalBar.getProgress()>0){
 			alarmeditIntervalBar.setProgress(alarmeditIntervalBar.getProgress()-1);
 		}
 	}
 
 	public void intervalplus(View p1){
-		//TODO:Implements this method.
+		
 		if(alarmeditIntervalBar.getProgress()<364){
 			alarmeditIntervalBar.setProgress(alarmeditIntervalBar.getProgress()+1);
 		}
@@ -377,14 +377,14 @@ boolean stopUpdate=false;
 	
 
 	public void delayminus(View p1){
-		//TODO:Implements this method.
+		
 		if(alarmeditDelayBar.getProgress()>0){
 			alarmeditDelayBar.setProgress(alarmeditDelayBar.getProgress()-1);
 		}
 	}
 
 	public void delayplus(View p1){
-		//TODO:Implements this method.
+		
 		if(alarmeditDelayBar.getProgress()<59){
 			alarmeditDelayBar.setProgress(alarmeditDelayBar.getProgress()+1);
 		}
@@ -394,14 +394,14 @@ boolean stopUpdate=false;
 	
 	
 	public void offsetminus(View p1){
-		//TODO:Implements this method.
+		
 		if(alarmeditOffsetBar.getProgress()>0){
 			alarmeditOffsetBar.setProgress(alarmeditOffsetBar.getProgress()-1);
 		}
 	}
 
 	public void offsetplus(View p1){
-		//TODO:Implements this method.
+		
 		
 		if(alarmeditOffsetBar.getProgress()<alarmeditOffsetBar.getMax()){
 			alarmeditOffsetBar.setProgress(alarmeditOffsetBar.getProgress()+1);
@@ -409,7 +409,7 @@ boolean stopUpdate=false;
 	}
 	
 	public void chooseCustomImg(View p1){
-		//TODO:Implements this method.
+		
 		AlertDialog.Builder adb=new AlertDialog.Builder(this);
 		adb.setTitle(l("怎样来提醒[称呼]？:"));
 		adb.setAdapter(new ImgPickAdapter(this), new DialogInterface.OnClickListener(){
@@ -417,7 +417,7 @@ boolean stopUpdate=false;
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					currentAlarm.alarmImage=ImgPickAdapter.ids[p2];
 					mtw("好，就这样提醒[称呼]了。",ImgPickAdapter.ids[p2]);
 				}
@@ -440,11 +440,11 @@ boolean stopUpdate=false;
 		finish();
 	}
 public void preventAlarmBWG(){
-	//TODO: implememt this method, for prevent damage of blue whale game.
+	//TODO: this method, for prevent damage of blue whale game.
 	
 }
 	public void saveAlarm(View p1){
-		//TODO:Implements this method.
+		
 		
 		if(currentAlarm.scheType==MyAlarm.TYPE_SCHE_GETUP){
 			if(tarHour==4&&tarMinute==20){
@@ -540,7 +540,7 @@ public void preventAlarmBWG(){
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					onChooseAlarm(p2);
 				}
 			});
@@ -569,7 +569,7 @@ public void preventAlarmBWG(){
 	@Override
 	public void onPrepareUi()
 	{
-		// TODO: Implement this method
+		
 		FPS=3;
 		canshowhelp=false;
 		Date d=new Date();
@@ -670,7 +670,7 @@ boolean isTimeListenerLocked=false;
 	@Override
 	public boolean isHiddenTitleBar()
 	{
-		// TODO: Implement this method
+		
 		return true;
 	}
 	
@@ -687,7 +687,7 @@ class ImgPickAdapter extends ArrayAdapter<Integer>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		// TODO: Implement this method
+		
 		View v=LayoutInflater.from(getContext()).inflate(R.layout.img,parent,false);
 		ImageView im=(ImageView)v.findViewById(R.id.imgImage);
 		im.setImageResource(ids[position]);

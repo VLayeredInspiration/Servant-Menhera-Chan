@@ -15,7 +15,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity im
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		getPreferenceManager().setSharedPreferencesName("settings");
 		addPreferencesFromResource(R.xml.preferences);
@@ -26,7 +26,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity im
 	@Override
 	public boolean onPreferenceClick(Preference preference)
 	{
-		// TODO: Implement this method
+		
 		if(preference.getKey().contentEquals("birthday")){
 			onBirthdayPreferenceClick();
 			return true;
@@ -40,7 +40,7 @@ public class PreferenceActivity extends android.preference.PreferenceActivity im
 	@Override
 	protected void onDestroy()
 	{
-		// TODO: Implement this method
+		
 		super.onDestroy();
 		try{
 			MaimService.curctx.changeNotifican(-1,null,null);
@@ -78,13 +78,13 @@ public DatePickerDialog(Context ctx){
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 	}
 	
 	
 	
-	public abstract void onDatePickResult(boolean comfirm,int year,int month,int date,boolean isLunar)
+	public abstract void onDatePickResult(boolean comfirm,int year,int month,int date,boolean isLunar);
 	
 	
 }

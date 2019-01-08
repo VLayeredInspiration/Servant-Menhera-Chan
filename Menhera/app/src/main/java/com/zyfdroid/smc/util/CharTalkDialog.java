@@ -37,7 +37,7 @@ public class CharTalkDialog extends Dialog
 	@Override
 	public void dismiss()
 	{
-		// TODO: Implement this method
+		
 		timerHandler.cancel();
 		timerHandler=null;
 		timerHandlerImpl=null;
@@ -52,7 +52,7 @@ public class CharTalkDialog extends Dialog
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO: Implement this method
+		
 		super.onCreate(savedInstanceState);
 		this.setCancelable(false);
 		initUi();
@@ -82,7 +82,7 @@ public class CharTalkDialog extends Dialog
 				@Override
 				public boolean onTouch(View p1, MotionEvent p2)
 				{
-					// TODO: Implement this method
+					
 					if(p2.getAction()==p2.ACTION_UP){
 						onClick();
 						return true;
@@ -186,7 +186,7 @@ class TimerExecuter implements Runnable{
 	@Override
 	public void run()
 	{
-		// TODO: Implement this method
+		
 		target.onTick();
 	}
 

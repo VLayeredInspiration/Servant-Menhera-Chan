@@ -23,7 +23,7 @@ int uiPage=0;
 	@Override
 	public void onPrepareUi()
 	{
-		// TODO: Implement this method
+		
 		super.onPrepareUi();
 		FPS=50;
 		initUi1();
@@ -33,14 +33,14 @@ int uiPage=0;
 	@Override
 	public void onUiPrepared()
 	{
-		// TODO: Implement this method
+		
 		super.onUiPrepared();
 	}
 
 	@Override
 	public void onFrame()
 	{
-		// TODO: Implement this method
+		
 		if(timer2_enable){Timer2();}
 	}
 
@@ -86,7 +86,7 @@ String[] whitelist;
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					// TODO: Implement this method
+					
 					try{
 					startActivity(getPackageManager().getLaunchIntentForPackage(whitelist[p2].split("\\n")[1]));
 					}catch(Exception e){tw("打开失败，这可能不是个安全软件");}
@@ -417,7 +417,7 @@ boolean isSafeApp(ApplicationInfo api,PackageManager pm){
 	@Override
 	public void onBackPressed()
 	{
-		// TODO: Implement this method
+		
 
 	}
 	

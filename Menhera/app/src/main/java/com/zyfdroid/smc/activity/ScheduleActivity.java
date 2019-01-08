@@ -38,7 +38,7 @@ Vibrator vibrator;
 	@Override
 	public void onPrepareUi()
 	{
-		// TODO: Implement this method
+		
 		alarms=getIntent().getLongArrayExtra("alarms");
 		Main.d("start scheduleActivity, length="+alarms.length);
 		processed=true;
@@ -215,19 +215,19 @@ boolean canAction=false;
 				@Override
 				public void onProgressChanged(SeekBar p1, int p2, boolean p3)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onStartTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 				}
 
 				@Override
 				public void onStopTrackingTouch(SeekBar p1)
 				{
-					// TODO: Implement this method
+					
 					
 					if(p1.getProgress()<p1.getMax()/12){
 						confirmAlarm(p1);
