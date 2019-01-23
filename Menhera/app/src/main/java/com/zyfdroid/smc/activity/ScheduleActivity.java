@@ -21,7 +21,7 @@ public class ScheduleActivity extends BaseActivity
 	long alarmTime;
 	int curalm=0;
 	boolean processed=true;
-	
+	public static ScheduleActivity lastInstance=null;
 	
 Vibrator vibrator;
 	KeyguardManager mKeyguardManager;  
@@ -38,7 +38,7 @@ Vibrator vibrator;
 	@Override
 	public void onPrepareUi()
 	{
-		
+		lastInstance=this;
 		alarms=getIntent().getLongArrayExtra("alarms");
 		Main.d("start scheduleActivity, length="+alarms.length);
 		processed=true;
@@ -82,7 +82,19 @@ Vibrator vibrator;
 		
 	}
 
-	
+
+	int drawableFromStr(String id){
+		try {
+			return R.drawable.class.getDeclaredField(id).getInt(null);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+		return R.drawable.hide;
+	}
+
+
 	void displayalarm(int almidx){
 		vibrator.cancel();
 		MyAlarm mal=MyAlarm.loadAlarm(this,alarms[almidx]);
@@ -96,7 +108,7 @@ Vibrator vibrator;
 		
 		scheduleTypeTitle.setText(l(mal.getTypeTitle()));
 		AlarmHint ah=mal.getTipString();
-		scheduleCharImage.setImageResource(ah.imgid);
+		scheduleCharImage.setImageResource(drawableFromStr( ah.imgid));
 		scheduleTextView.setText(l(ah.hintText));
 		scheduleTextDescibe.setText(l(mal.alarmTitle));
 		scheduleDelayText.setText("→  推迟"+mal.retryInterval+"分钟提醒");
@@ -399,6 +411,7 @@ boolean canAction=false;
 			Main.e(e);
 		}
 		relock();
+		lastInstance=null;
 		super.onDestroy();
 	}
 	

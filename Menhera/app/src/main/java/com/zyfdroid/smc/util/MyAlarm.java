@@ -88,7 +88,7 @@ public class MyAlarm
 	public int alarmimportance=51;
 	
 	public int retryInterval=9;
-	public int alarmImage=R.drawable.zimg_1;
+	public String alarmImage="zimg_1";
 	
 	
 	public int month;
@@ -418,7 +418,7 @@ public class MyAlarm
 			
 			mal.alarmimportance=Integer.valueOf(s[11]);
 			mal.retryInterval=Integer.valueOf(s[12]);
-			mal.alarmImage=Integer.valueOf(s[13]);
+			mal.alarmImage=(s[13]);
 			
 			
 			return mal;
@@ -441,7 +441,7 @@ public class MyAlarm
 			
 			mal.alarmimportance=Integer.valueOf(s[10]);
 			mal.retryInterval=Integer.valueOf(s[11]);
-			mal.alarmImage=Integer.valueOf(s[12]);
+			mal.alarmImage=(s[12]);
 			mal.isDivideWeek=s[13].equalsIgnoreCase("true");
 			mal.oddWeek=s[14].equalsIgnoreCase("true");
 			return mal;
@@ -465,7 +465,7 @@ public class MyAlarm
 			
 			mal.alarmimportance=Integer.valueOf(s[11]);
 			mal.retryInterval=Integer.valueOf(s[12]);
-			mal.alarmImage=Integer.valueOf(s[13]);
+			mal.alarmImage=(s[13]);
 			
 			
 			
@@ -532,33 +532,33 @@ public class MyAlarm
 	}
 	
 	public AlarmHint getTipString(){
-		AlarmHint cst=new AlarmHint(R.drawable.doze,"Zzz");
+		AlarmHint cst=new AlarmHint("doze","Zzz");
 		switch (scheType){
 			
 			case TYPE_SCHE_MORNING:
 				if(hour<=10&&hour>=4){
-					cst.imgid=R.drawable.morning;
+					cst.imgid="morning";
 					cst.hintText=randomOne("早上好，[称呼]！","早安，[称呼]！","今天又是元气满满的一天呢，[称呼]");
 				}else{
-					cst.imgid=R.drawable.ask;
+					cst.imgid="ask";
 					cst.hintText="[称呼]，这个点的早安。。。是什么意思？？？";
 				}
 			break;
 			
 			case TYPE_SCHE_GETUP:
 				cst.hintText="[称呼][称呼]，起床了！";
-				cst.imgid=R.drawable.morning;
+				cst.imgid="morning";
 				if(hour<6){
-					cst.imgid=R.drawable.activate;
+					cst.imgid="activate";
 					cst.hintText="[称呼]起的好早啊！一定是有什么重要的事吧。";
 				}
 				if(hour<=12&&hour>=9){
-					cst.imgid=R.drawable.welcome;
+					cst.imgid="welcome";
 					cst.hintText="太晚起床对身体不好，[称呼]以后可要早起哦！";
 				}
 				
 				if(delays>0){
-					cst.imgid=R.drawable.strike;
+					cst.imgid="strike";
 					cst.hintText="起~床~啦~，[称呼2]！";
 					if(delays>1){
 						cst.hintText="[称呼][称呼]，赶快起床！再晚就来不及了！";
@@ -567,53 +567,53 @@ public class MyAlarm
 			break;
 			
 			case TYPE_SCHE_GOTO_SCHOOL:
-				cst.imgid=R.drawable.activate;
+				cst.imgid="activate";
 				cst.hintText=randomOne("到了上学的时间了，[称呼]","上学时间到了，[称呼]")+
 				"\n上课时一定要好好听讲，和老师积极互动，认真思考老师提出的问题，祝你学业进步！";
 			break;
 			case TYPE_SCHE_GOTO_WORK:
-				cst.imgid=R.drawable.completion;
+				cst.imgid="completion";
 				cst.hintText="该去上班了，[称呼]";
 			break;
 			case TYPE_SCHE_BREAKFAST:
 				cst.hintText="[称呼]，吃早饭了！早饭一定要吃好哦！";
-				cst.imgid=R.drawable.food;
+				cst.imgid="food";
 				if(hour<=12&&hour>=9){
-					cst.imgid=R.drawable.unsatisfied;
-					cst.hintText="[称呼]怎么那么不爱惜自己的身体？早晨很重要的，一定不要拖延得太晚。";
+					cst.imgid="unsatisfied";
+					cst.hintText="[称呼]赶紧吃早餐吧，不要拖延得太晚哦。";
 				}
 			break;
 			
 			case TYPE_SCHE_LUNCH:
 				cst.hintText="[称呼]，吃午饭时间到了";
-				cst.imgid=R.drawable.food;
+				cst.imgid="food";
 			break;
 			case TYPE_SCHE_SUPPER:
 				cst.hintText="吃晚饭了，[称呼]。\n晚饭不要吃得太多哦。";
-				cst.imgid=R.drawable.lessfood;
+				cst.imgid="lessfood";
 			break;
 			case TYPE_SCHE_GOTO_BED:
 				cst.hintText="该睡觉了，[称呼]一定要好好休息。。。";
-				cst.imgid=R.drawable.night;
+				cst.imgid="night";
 				if(hour>=22 ||hour<=3){
-					cst.hintText="[称呼]怎么这么晚才睡觉？这样下去对[称呼]的身体不好的。。。";
-					cst.imgid=R.drawable.wakefromdoze;
+					cst.hintText="[称呼]赶紧睡觉吧！熬夜对[称呼]的身体不好的。。。";
+					cst.imgid="wakefromdoze";
 				}
 			break;
 			case TYPE_SCHE_NIGHT_CALL:
 				if(hour>=19&&hour<=22){
 					cst.hintText=randomOne("晚安，[称呼]！","做个好梦，[称呼]！");
-					cst.imgid=R.drawable.night;
+					cst.imgid="night";
 				}
 				else{
 					if(hour>22 ||hour<3){
-						cst.hintText="[称呼]这么晚才睡觉吗？这样下去对身体不好的。。。";
-						cst.imgid=R.drawable.wakefromdoze;
+						cst.hintText="[称呼]赶紧睡觉吧！熬夜对[称呼]的身体不好的。。。";
+						cst.imgid="wakefromdoze";
 					}
 					else
 					{
 						cst.hintText="[称呼]，这个点的晚安提醒。。。意味着什么呢？";
-						cst.imgid=R.drawable.ask;
+						cst.imgid="ask";
 					}
 				}
 			break;
@@ -621,66 +621,66 @@ public class MyAlarm
 				
 				if((this.alarmTitle).trim().isEmpty()){
 					cst.hintText="生日快乐，[称呼]！";
-					cst.imgid=R.drawable.cheer;
+					cst.imgid="cheer";
 				}else{
 					cst.hintText="今天是一个重要的人的生日，去给Ta庆祝一下吧！";
-					cst.imgid=R.drawable.activate;
+					cst.imgid="activate";
 				}
 			break;
 			case TYPE_SCHE_INVITATION:
 				cst.hintText=randomOne("[称呼]，有没有忘记和Ta的约定。","[称呼]，千万不要忘记和Ta的约定");
-				cst.imgid=R.drawable.activate;
+				cst.imgid="activate";
 			break;
 			case TYPE_SCHE_HOMEWORK:
 				cst.hintText=randomOne("[称呼]该写作业了","[称呼]，放下手机，作业时间到了","作业即使很多也是要努力完成的，[称呼]");
-				cst.imgid=R.drawable.sorry;
+				cst.imgid="sorry";
 			break;
 			case TYPE_SCHE_HOUSEWORK:
 				cst.hintText=randomOne("该做家务了，[称呼]。要保持精致的生活习惯哦！");
-				cst.imgid=R.drawable.norm;
+				cst.imgid="norm";
 			break;
 			case TYPE_SCHE_MEETING:
 				cst.hintText="[称呼]有一个会议需要参加。";
-				cst.imgid=R.drawable.knock;
+				cst.imgid="zimg_30";
 				if(delays!=0){
 					cst.hintText="[称呼2]！会议要迟到了！";
-					cst.imgid=R.drawable.strike;
+					cst.imgid="strike";
 				}
 			break;
 			case TYPE_SCHE_TVPROGRAM:
 				cst.hintText="[称呼]，你想看的电视节目要开始了！";
-				cst.imgid=R.drawable.knock;
+				cst.imgid="zimg_30";
 			break;
 			case TYPE_SCHE_TAKETHING:
-				cst.imgid=R.drawable.ask;
+				cst.imgid="ask";
 				cst.hintText=randomOne("[称呼]，可别忘了带东西哦。","[称呼]，请检查一下要带的东西");
 				if(alarmTitle.trim().isEmpty()){
 					cst.hintText=cst.hintText +"\n如果记不住什么是东西的话，可以让我来帮忙记下来(提醒列表-编辑提醒事件-输入详细说明)";
 				}
 			break;
 			case TYPE_SCHE_GAME:
-				cst.imgid=R.drawable.game;
+				cst.imgid="game";
 				cst.hintText="[称呼]，打会游戏，放松一下吧。(可别太沉迷哦)";
 			break;
 			
 			case TYPE_SCHE_CALLTO:
-				cst.imgid=R.drawable.call;
-				cst.hintText="[称呼]，记得打电话问候一下某个人哦。";
+				cst.imgid="call";
+				cst.hintText=randomOne("[称呼]，记得打电话问候一下某个人哦。","[称呼]，是时候该给Ta打个电话了");
 			break;
 			
 			case TYPE_SCHE_SPORT:
-				cst.imgid=R.drawable.jogging;
+				cst.imgid="jogging";
 				cst.hintText=randomOne("[称呼]，坚持运动，能保持一个好心情哦。","[称呼]，不要整天宅着，也要多出去锻炼身体。","[称呼]，出去活动一下吧。");
 			break;
 			
 			case TYPE_SCHE_READING:
-				cst.imgid=R.drawable.encourage;
+				cst.imgid="encourage";
 				cst.hintText=randomOne("看会书吧，[称呼]","读书能修身养性哦，[称呼]");
 			break;
 			
 			case TYPE_SCHE_CUSTOM:
-				if(alarmImage==-1){
-				cst.imgid=R.drawable.activate;
+				if(alarmImage==null){
+					cst.imgid="activate";
 				}else{
 					cst.imgid=alarmImage;
 				}
@@ -693,7 +693,7 @@ public class MyAlarm
 				}
 			break;
 			case TYPE_SCHE_MEDICINE:
-				cst.imgid=R.drawable.confused;
+				cst.imgid="confused";
 				cst.hintText="[称呼]该吃药了。";
 				if(delays!=0){
 					cst.hintText=cst.hintText+"按时吃药才能好得更快哦。";

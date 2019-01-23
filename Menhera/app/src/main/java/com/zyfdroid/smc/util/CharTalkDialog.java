@@ -161,7 +161,7 @@ public class CharTalkDialog extends Dialog
 	void onClick(){
 		if(ptrCurrent<dialogue.length){
 			if(ptrCurrent!=-1)
-			chartalkdialogImageView1.setImageResource(dialogue[ptrCurrent].imgid);
+			chartalkdialogImageView1.setImageResource(drawableFromStr( dialogue[ptrCurrent].imgid));
 			animStatus=1;
 		}
 		else{
@@ -170,7 +170,18 @@ public class CharTalkDialog extends Dialog
 			animStatus=1;
 		}
 	}
-	
+
+
+	int drawableFromStr(String id){
+        try {
+            return R.drawable.class.getDeclaredField(id).getInt(null);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        return R.drawable.hide;
+    }
 	
 	
 }

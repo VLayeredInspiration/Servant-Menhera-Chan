@@ -34,6 +34,9 @@ public class MissedAlarmActivity extends BaseActivity
 		else{
 		lastctx=this;
 		}
+		if(null!=ScheduleActivity.lastInstance){
+			ScheduleActivity.lastInstance.finish();
+		}
 	}
 
 	public void refresh(){

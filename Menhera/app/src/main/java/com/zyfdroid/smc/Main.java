@@ -11,7 +11,7 @@ public class Main extends Application
 {
 	public static final HashMap<String,FunctionItem> appFunctions=new HashMap<String,FunctionItem>();
 	static Context ctx;
-	//consted value pool
+	//consted value poo
 	public static final String SEX_MALE="♂";
 	public static final String SEX_FEMALE="♀";
 	public static final String SEX_NONE="？";

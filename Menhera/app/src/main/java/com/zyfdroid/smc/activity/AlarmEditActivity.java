@@ -419,7 +419,7 @@ boolean stopUpdate=false;
 				{
 					
 					currentAlarm.alarmImage=ImgPickAdapter.ids[p2];
-					mtw("好，就这样提醒[称呼]了。",ImgPickAdapter.ids[p2]);
+					mtw("好，就这样提醒[称呼]了。",drawableFromStr(ImgPickAdapter.ids[p2]));
 				}
 			});
 		adb.setNegativeButton("手滑了",null);
@@ -433,8 +433,18 @@ boolean stopUpdate=false;
 		super.onUiPrepared();
 		canshowhelp=true;
 	}
-	
-	
+	int drawableFromStr(String id){
+		try {
+			return R.drawable.class.getDeclaredField(id).getInt(null);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+		return R.drawable.hide;
+	}
+
+
 	public void cancelAlarm(View p1){
 		
 		finish();
@@ -676,9 +686,50 @@ boolean isTimeListenerLocked=false;
 	
 }
 
-class ImgPickAdapter extends ArrayAdapter<Integer>{
-	static final Integer[] ids={R.drawable.zimg_1,R.drawable.zimg_2,R.drawable.zimg_3,R.drawable.zimg_4,R.drawable.zimg_5,R.drawable.zimg_6,R.drawable.zimg_7,R.drawable.zimg_8,R.drawable.zimg_9,R.drawable.zimg_10,R.drawable.zimg_11,R.drawable.zimg_12,R.drawable.zimg_13,R.drawable.zimg_14,R.drawable.zimg_15,R.drawable.zimg_16,R.drawable.zimg_17,R.drawable.zimg_18,R.drawable.zimg_19,R.drawable.zimg_20,R.drawable.zimg_21,R.drawable.zimg_22,R.drawable.zimg_23,R.drawable.zimg_24,R.drawable.zimg_25,R.drawable.zimg_26,R.drawable.zimg_27,R.drawable.zimg_28,R.drawable.zimg_29,R.drawable.zimg_30,R.drawable.zimg_31,R.drawable.zimg_32,R.drawable.zimg_33,R.drawable.zimg_34,R.drawable.zimg_35,R.drawable.zimg_36,R.drawable.zimg_37,R.drawable.zimg_38,R.drawable.zimg_39,R.drawable.zimg_40,R.drawable.zimg_41,R.drawable.zimg_42
-		};
+class ImgPickAdapter extends ArrayAdapter<String>{
+			static final String[] ids={"zimg_1",
+					"zimg_2",
+					"zimg_3",
+					"zimg_4",
+					"zimg_5",
+					"zimg_6",
+					"zimg_7",
+					"zimg_8",
+					"zimg_9",
+					"zimg_10",
+					"zimg_11",
+					"zimg_12",
+					"zimg_13",
+					"zimg_14",
+					"zimg_15",
+					"zimg_16",
+					"zimg_17",
+					"zimg_18",
+					"zimg_19",
+					"zimg_20",
+					"zimg_21",
+					"zimg_22",
+					"zimg_23",
+					"zimg_24",
+					"zimg_25",
+					"zimg_26",
+					"zimg_27",
+					"zimg_28",
+					"zimg_29",
+					"zimg_30",
+					"zimg_31",
+					"zimg_32",
+					"zimg_33",
+					"zimg_34",
+					"zimg_35",
+					"zimg_36",
+					"zimg_37",
+					"zimg_38",
+					"zimg_39",
+					"zimg_40",
+					"zimg_41",
+					"zimg_42"
+			};
 		
 		public ImgPickAdapter(Context ctx){
 		super(ctx,R.layout.img,ids);
@@ -690,9 +741,20 @@ class ImgPickAdapter extends ArrayAdapter<Integer>{
 		
 		View v=LayoutInflater.from(getContext()).inflate(R.layout.img,parent,false);
 		ImageView im=(ImageView)v.findViewById(R.id.imgImage);
-		im.setImageResource(ids[position]);
+		im.setImageResource(drawableFromStr(ids[position]));
 		return v;
 	}
-	
-	
+
+	int drawableFromStr(String id){
+		try {
+			return R.drawable.class.getDeclaredField(id).getInt(null);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+		return R.drawable.hide;
+	}
+
+
 }
