@@ -194,7 +194,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		        try {  
 			            long timestamp = System.currentTimeMillis();  
 			            String time = formatter.format(new Date());  
-			            String fileName = "crash-"+"com.semssjbcs.servantmanhera-" + timestamp + ".log";  
+			            String fileName = "crash-"+"com.zyfdroid.smc-" + timestamp + ".log";
 			            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {  
 							String path = "/sdcard/AppCrashs/";  
 				                File dir = new File(path);  
