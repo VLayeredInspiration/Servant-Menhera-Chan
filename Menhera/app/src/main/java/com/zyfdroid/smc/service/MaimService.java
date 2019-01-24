@@ -160,7 +160,9 @@ public class MaimService extends Service implements Runnable
 	}
 	
 	synchronized void setAlarmClock(long triggleTime,long[] alarmIds){
-		
+		if(null==alarmIds && triggleTime!=-1){
+			Main.e(new NullPointerException("alarms is null but trigger time is not -1"));
+		}
 		
 		Intent i=new Intent(this,ScheduleActivity.class);
 		i.putExtra("alarms",alarmIds);

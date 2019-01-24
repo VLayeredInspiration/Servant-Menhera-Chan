@@ -11,4 +11,5 @@ public class FunctionItem{
 		icon=mIcomRes;
 		activityClass=activity;
 	}
+	//todo complete these and then complete start page.
 }
