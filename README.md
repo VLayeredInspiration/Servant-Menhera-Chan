@@ -32,9 +32,15 @@ UI渣(程序员那完全不存在的审美)欢迎指点<br>
 
 >https://github.com/a-wing/Menhera-chan
 
-项目已经迁移至Android Studio,将不再（无法）提供APK的下载
+项目已经迁移至Android Studio,重新提供下载
 
-Do not use the fxxking "Instant Run" in Android Studio
+
+
+![点进去后右上角下载](Menhera/app/release/app-release.apk)
+
+
+
+P.S. Do not use the fxxking "Instant Run" in Android Studio
 
 <br>
 <br>
