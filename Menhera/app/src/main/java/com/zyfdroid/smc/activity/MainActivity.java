@@ -28,25 +28,6 @@ public class MainActivity extends BaseActivity
 		//TODO:判断跳转启动页
 		return false;
 	}
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public boolean isHiddenTitleBar()
 	{
