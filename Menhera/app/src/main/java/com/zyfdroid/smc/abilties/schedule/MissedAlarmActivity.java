@@ -1,14 +1,12 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.abilties.schedule;
 
 import android.content.*;
-import android.content.res.*;
 import android.view.*;
 import android.widget.*;
 import android.os.*;
 
 import com.zyfdroid.smc.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.util.*;
 import com.zyfdroid.smc.service.*;
 
 public class MissedAlarmActivity extends BaseActivity {

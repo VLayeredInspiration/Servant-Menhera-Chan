@@ -1,6 +1,8 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.abilties.schedule;
 
 import java.util.*;
+
+import android.annotation.SuppressLint;
 import android.content.*;
 import com.zyfdroid.smc.*;
 import com.zyfdroid.smc.base.*;
@@ -488,6 +490,7 @@ public class MyAlarm {
         return typeIcons[scheType];
     }
 
+    @SuppressLint("ApplySharedPref")
     public void saveAlarm(Context ctx, long alarmId) {
         ctx.getSharedPreferences("alarms", Context.MODE_PRIVATE).edit().putString(String.valueOf(alarmId), this.toString()).commit();
     }
@@ -538,7 +541,7 @@ public class MyAlarm {
                 cst.hintText = "[称呼][称呼]，起床了！";
                 cst.imgid = "morning";
                 if (hour < 6) {
-                    cst.imgid = "activate";
+                    cst.imgid = "zimg_activate";
                     cst.hintText = "[称呼]起的好早啊！一定是有什么重要的事吧。";
                 }
                 if (hour <= 12 && hour >= 9) {
@@ -556,7 +559,7 @@ public class MyAlarm {
                 break;
 
             case TYPE_SCHE_GOTO_SCHOOL:
-                cst.imgid = "activate";
+                cst.imgid = "zimg_activate";
                 cst.hintText = randomOne("到了上学的时间了，[称呼]", "上学时间到了，[称呼]") +
                         "\n上课时一定要好好听讲，和老师积极互动，认真思考老师提出的问题，祝你学业进步！";
                 break;
@@ -610,12 +613,12 @@ public class MyAlarm {
                     cst.imgid = "cheer";
                 } else {
                     cst.hintText = "今天是一个重要的人的生日，去给Ta庆祝一下吧！";
-                    cst.imgid = "activate";
+                    cst.imgid = "zimg_activate";
                 }
                 break;
             case TYPE_SCHE_INVITATION:
                 cst.hintText = randomOne("[称呼]，有没有忘记和Ta的约定。", "[称呼]，千万不要忘记和Ta的约定");
-                cst.imgid = "activate";
+                cst.imgid = "zimg_activate";
                 break;
             case TYPE_SCHE_HOMEWORK:
                 cst.hintText = randomOne("[称呼]该写作业了", "[称呼]，放下手机，作业时间到了", "作业即使很多也是要努力完成的，[称呼]");
@@ -666,7 +669,7 @@ public class MyAlarm {
 
             case TYPE_SCHE_CUSTOM:
                 if (alarmImage == null) {
-                    cst.imgid = "activate";
+                    cst.imgid = "zimg_activate";
                 } else {
                     cst.imgid = alarmImage;
                 }

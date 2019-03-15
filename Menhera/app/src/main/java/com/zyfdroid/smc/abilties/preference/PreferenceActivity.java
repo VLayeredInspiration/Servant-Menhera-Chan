@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.abilties.preference;
 import android.content.*;
 import android.os.*;
 import android.preference.*;

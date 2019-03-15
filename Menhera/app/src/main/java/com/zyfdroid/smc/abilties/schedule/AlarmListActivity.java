@@ -1,14 +1,13 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.abilties.schedule;
 
 import android.view.*;
 import android.app.*;
 import android.content.*;
 import android.widget.*;
-import java.util.*;
 import android.widget.AdapterView.*;
+
 import com.zyfdroid.smc.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.util.*;
 import com.zyfdroid.smc.service.*;
 
 public class AlarmListActivity extends BaseActivity
@@ -25,7 +24,7 @@ public class AlarmListActivity extends BaseActivity
 		AlertDialog.Builder adb=new AlertDialog.Builder(this);
 		adb.setTitle("是什么样的提醒？:");
 		
-		adb.setAdapter(new AADP(this), new DialogInterface.OnClickListener(){
+		adb.setAdapter(new AlarmTypeAdapter(this), new DialogInterface.OnClickListener(){
 
 				@Override
 				public void onClick(DialogInterface p1, int p2)
@@ -175,8 +174,8 @@ public class AlarmListActivity extends BaseActivity
 		super.onResume();
 		loadAlarmList();
 	}
-static AlarmListActivity ctx;
-	static void OnRefreshRequired(){
+	static AlarmListActivity ctx;
+	public static void OnRefreshRequired(){
 		try{
 		ctx.loadAlarmList();
 		}catch(Exception e){
@@ -238,22 +237,5 @@ public View getView(int position, View convertView, ViewGroup parent)
 
 
 
-class AADP extends ArrayAdapter<String>{
-	public AADP(Context ctx){
-		super(ctx,R.layout.altp,MyAlarm.typeTitles);
-	}
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
-	{
-		
-		LayoutInflater lyf=LayoutInflater.from(getContext());
-		View v0=lyf.inflate(R.layout.altp,parent,false);
-		((ImageView)v0.findViewById(R.id.altpImageView1)).setImageResource(MyAlarm.typeIcons[position]);
-		((TextView)v0.findViewById(R.id.altpTextView1)).setText(MyAlarm.typeTitles[position]+(MyAlarm.importance[position]?"(重要提醒)":""));
-		return v0;
-	}
-	
-	
-}
 

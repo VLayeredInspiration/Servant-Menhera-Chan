@@ -4,11 +4,11 @@ import com.zyfdroid.smc.*;
 public enum CharStatus
 {
 	NORM1(R.drawable.norm,"『有什么需要，[称呼]可以随时来找我！』",
-		 R.drawable.activate,"我来了！[称呼]有什么事吗？？"),
+		 R.drawable.zimg_activate,"我来了！[称呼]有什么事吗？？"),
 	NORM2(R.drawable.free,"『有什么需要，随时找我。』",
-		  R.drawable.activate,"我来了！[称呼]有什么事吗？？"),
+		  R.drawable.zimg_activate,"我来了！[称呼]有什么事吗？？"),
 	NORM3(R.drawable.chg,"『？？？？？？』",
-		  R.drawable.activate,"我来了！[称呼]有什么事吗？？"),
+		  R.drawable.zimg_activate,"我来了！[称呼]有什么事吗？？"),
 	NORM_INAT(R.drawable.see,"『随时待命』",
 		 R.drawable.ask,"请问[称呼]有什么需要帮忙的？"),
 	NORM_DOZE(R.drawable.doze,"Zzzzz...",

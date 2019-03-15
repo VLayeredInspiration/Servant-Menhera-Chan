@@ -28,7 +28,7 @@
 				<ImageView
 					android:layout_height="match_parent"
 					android:layout_width="match_parent"
-					android:src="@drawable/activate"
+					android:src="@drawable/zimg_activate"
 					android:id="@+id/clickn_charimg"
 					android:layout_weight="1.0"/>
 

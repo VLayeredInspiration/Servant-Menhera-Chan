@@ -41,11 +41,11 @@
 			</activity>
 		<activity android:name=".activity.BootActivity" android:theme="@android:style/Theme.NoDisplay"
 			android:excludeFromRecents="true" android:noHistory="true"/>
-		<activity android:name=".activity.MissedAlarmActivity" android:theme="@style/ScheTheme"
+		<activity android:name=".abilties.schedule.MissedAlarmActivity" android:theme="@style/ScheTheme"
 			android:screenOrientation="portrait" android:launchMode="singleTask"/>
-		<activity android:name=".activity.ScheduleActivity" android:theme="@style/ScheTheme" android:screenOrientation="portrait" android:launchMode="singleTask"/>
+		<activity android:name=".abilties.schedule.ScheduleActivity" android:theme="@style/ScheTheme" android:screenOrientation="portrait" android:launchMode="singleTask"/>
 		<activity 
-			android:name=".activity.AlarmListActivity"  
+			android:name=".abilties.schedule.AlarmListActivity"
 			android:screenOrientation="portrait" 
 			android:theme="@style/AppTheme_Black"
 			android:label="提醒列表"
@@ -61,13 +61,13 @@
 		</activity>
 		
 		<activity 
-			android:name=".activity.PreferenceActivity"  
+			android:name=".abilties.preference.PreferenceActivity"
 			android:screenOrientation="portrait" 
 			android:theme="@style/AppTheme"
 			android:label="个性化"
 			android:launchMode="singleTask">
 		</activity>
-		<activity android:name=".activity.AlarmEditActivity" android:screenOrientation="portrait" android:launchMode="singleTask"
+		<activity android:name=".abilties.schedule.AlarmEditActivity" android:screenOrientation="portrait" android:launchMode="singleTask"
 			android:theme="@style/AppTheme_Black"/>
 			<activity android:name=".activity.LogActivity" android:screenOrientation="portrait" android:label="很抱歉，该应用已停止运行。"/>
 		<service android:name=".service.MaimService" android:label="Menhera" />
@@ -81,7 +81,8 @@
 				<action android:name="android.intent.action.BOOT_COMPLETED" />  
 				<category android:name="android.intent.category.DEFAULT" />  
 			</intent-filter>  
-		</receiver>  
+		</receiver>
+		<receiver android:name=".receiver.CommonAlarmReceiver" ></receiver>
     </application>
 
 </manifest>

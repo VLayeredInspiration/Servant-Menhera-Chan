@@ -4,8 +4,7 @@ import java.util.*;
 public class StateManager
 {
 	private State currentState;
-	
-	///#region DateTime
+
 	int year=0;
 	int month=0;
 	int day=0;
@@ -18,8 +17,7 @@ public class StateManager
 	boolean lunar_leap=false;
 	long stamp=-1;
 	
-	
-	///#endregion
+
 	
 	public State getState(){
 		callCalcState();
@@ -29,14 +27,14 @@ public class StateManager
 	private void callCalcState(){
 		updateTime();
 		
-		//"Not implement yet.";
+		//TODO "Not implement yet.";
 		
 	}
 	private long lastDisturb=-1;
 	public void onDisturb(){
 		lastDisturb=System.currentTimeMillis();
 		
-		//"Not implement yet.";
+		//TODO "Not implement yet.";
 	}
 	
 	private long hangTillTime=-1;
@@ -78,7 +76,9 @@ public class StateManager
 		public String leaveText;
 		public int leaveImg;
 		public CtxRunnable special;
-		
+
+
+
 		public String getNotifyText(){
 			return notifyText;
 		}

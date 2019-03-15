@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.abilties.schedule;
 
 import android.annotation.SuppressLint;
 import android.widget.*;
@@ -531,7 +531,7 @@ public class AlarmEditActivity extends BaseActivity {
     public void onRechooseType() {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setTitle("是什么样的提醒？:");
-        adb.setAdapter(new AADP(this), new DialogInterface.OnClickListener() {
+        adb.setAdapter(new AlarmTypeAdapter(this), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface p1, int p2) {

@@ -7,8 +7,6 @@ import android.graphics.*;
 import android.support.annotation.RequiresApi;
 import android.widget.*;
 
-import java.io.*;
-
 import android.util.*;
 import android.support.v4.app.NotificationCompat;
 import android.app.KeyguardManager;
@@ -16,8 +14,9 @@ import android.app.KeyguardManager.KeyguardLock;
 
 import java.util.*;
 
-import android.provider.*;
-
+import com.zyfdroid.smc.abilties.schedule.MissedAlarmActivity;
+import com.zyfdroid.smc.abilties.schedule.MyAlarm;
+import com.zyfdroid.smc.abilties.schedule.ScheduleActivity;
 import com.zyfdroid.smc.receiver.*;
 import com.zyfdroid.smc.util.*;
 import com.zyfdroid.smc.*;
@@ -183,7 +182,7 @@ public class MaimService extends Service implements Runnable {
 
     boolean isLockedBefore;
 
-    public void checkSchedule() {
+    public void checkState() {
         d.setTime(System.currentTimeMillis());
         status = CharStatus.NORM1;
         Random r = new Random();
@@ -242,15 +241,7 @@ public class MaimService extends Service implements Runnable {
     }
 
     //invoke checking alarms at other context
-    public static void requireNext(Context ctx) {
-        try {
-            MaimService.curctx.mWakeLock = MaimService.curctx.mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MainService");
-            MaimService.curctx.mWakeLock.acquire(10000);
-            MaimService.curctx.checkScheduleWhileOff();
-        } catch (Exception e) {
-            ctx.startService(new Intent(ctx, MaimService.class));
-        }
-    }
+
 
 
     void relock() {
@@ -507,7 +498,7 @@ public class MaimService extends Service implements Runnable {
         }
         prepareTask();
         checkScheduleWhileOff();
-        checkSchedule();
+        checkState();
 
         return START_STICKY;
 
@@ -635,7 +626,7 @@ public class MaimService extends Service implements Runnable {
         try {
             while (true) {
                 if (mPowerManager.isScreenOn()) {
-                    checkSchedule();
+                    checkState();
                 } else {
                     serviceThread = null;
                     return;

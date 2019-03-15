@@ -141,7 +141,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			            PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);  
 			            if (pi != null) {  
 				                String versionName = pi.versionName == null ? "null" : pi.versionName;  
-				                String versionCode = pi.versionCode + "";  
+				                String versionCode = "NaN";
 				                infos.put("versionName", versionName);  
 				                infos.put("versionCode", versionCode);  
 			            }  

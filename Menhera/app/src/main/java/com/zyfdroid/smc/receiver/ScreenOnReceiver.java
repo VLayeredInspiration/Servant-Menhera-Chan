@@ -29,7 +29,7 @@ public class ScreenOnReceiver extends BroadcastReceiver
 					Main.d("ScreenOnReveiver");
 					MaimService.curctx.resumeTask();
 			MaimService.curctx.checkScheduleWhileOff();
-			MaimService.curctx.checkSchedule();
+			MaimService.curctx.checkState();
 			}
 			}catch(Exception e){
 				Main.e(e);

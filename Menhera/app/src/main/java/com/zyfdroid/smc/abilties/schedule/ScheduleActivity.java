@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.abilties.schedule;
 
 import android.annotation.SuppressLint;
 import android.app.*;
@@ -9,7 +9,6 @@ import android.widget.*;
 
 import java.util.*;
 
-import android.util.*;
 import android.content.res.*;
 import android.widget.SeekBar.*;
 
@@ -377,7 +376,7 @@ public class ScheduleActivity extends BaseActivity {
     protected void onDestroy() {
         vibrator.cancel();
         try {
-            MaimService.requireNext(this);
+            Schedule.requireNext(this);
         } catch (Exception e) {
             Main.e(e);
         }
