@@ -1,9 +1,8 @@
-package com.zyfdroid.smc.activity;
-import android.app.*;
+package com.zyfdroid.smc.soul.activity;
 import android.os.*;
 import android.content.*;
-import com.zyfdroid.smc.base.*;
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.base.*;
+import com.zyfdroid.smc.soul.service.*;
 
 public class BootActivity extends BaseActivity
 {

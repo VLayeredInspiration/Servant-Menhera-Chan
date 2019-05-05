@@ -12,10 +12,10 @@ import java.util.*;
 import android.content.res.*;
 import android.widget.SeekBar.*;
 
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.service.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.base.*;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.base.*;
+import com.zyfdroid.smc.soul.util.*;
 
 public class ScheduleActivity extends BaseActivity {
     long alarmTime;
@@ -47,7 +47,7 @@ public class ScheduleActivity extends BaseActivity {
         Main.d("start scheduleActivity, length=" + alarms.length);
         processed = true;
         super.onPrepareUi();
-        if (null == MaimService.curctx) {
+        if (null == MaimService.mCurrentContext) {
             startService(new Intent(this, MaimService.class));
         }
         setContentView(R.layout.schedule);
@@ -67,10 +67,10 @@ public class ScheduleActivity extends BaseActivity {
         if (null != alarms && alarms.length != 0) {
             displayalarm(curalm);
             try {
-                MaimService.curctx.cancelHang();
+                MaimService.mCurrentContext.cancelHang();
                 Intent i = this.getIntent();
-                MaimService.curctx.setHangHint(R.drawable.hint, "提醒正在进行(点击查看)", i, System.currentTimeMillis() + 55000l);
-                MaimService.curctx.changeNotifican(-1, null, null);
+                MaimService.mCurrentContext.setHangHint(R.drawable.hint, "提醒正在进行(点击查看)", i, System.currentTimeMillis() + 55000l);
+                MaimService.mCurrentContext.changeNotifican(-1, null, null);
             } catch (Exception e) {
                 Main.e(e);
             }
@@ -123,7 +123,7 @@ public class ScheduleActivity extends BaseActivity {
             Main.e(new IllegalStateException("Unexpected alarm " + mal.alarmTitle + " at time " + System.currentTimeMillis() + " with target time " + mal.targetTime));
             curalm++;
             if (curalm >= alarms.length) {
-                MaimService.curctx.cancelHang();
+                MaimService.mCurrentContext.cancelHang();
                 processed = true;
                 resetCheck();
                 finishAndRemoveTask();
@@ -258,7 +258,7 @@ public class ScheduleActivity extends BaseActivity {
         } else {
             processed = true;
             resetCheck();
-            MaimService.curctx.cancelHang();
+            MaimService.mCurrentContext.cancelHang();
             finishAndRemoveTask();
         }
 
@@ -288,7 +288,7 @@ public class ScheduleActivity extends BaseActivity {
             curalm += 1;
             displayalarm(curalm);
         } else {
-            MaimService.curctx.cancelHang();
+            MaimService.mCurrentContext.cancelHang();
             processed = true;
             resetCheck();
             finishAndRemoveTask();
@@ -341,7 +341,7 @@ public class ScheduleActivity extends BaseActivity {
                     } else {
                         mal.delays = 0;
                         mal.saveAlarm(this, alarms[i]);
-                        MaimService.curctx.hangStat(CharStatus.IGNORED, System.currentTimeMillis() + 3600000);
+                        MaimService.mCurrentContext.hangStat(CharStatus.IGNORED, System.currentTimeMillis() + 3600000);
                     }
                 }
                 if (mal.isImportant() == mal.IMPORTANCE_HIGH) {
@@ -352,7 +352,7 @@ public class ScheduleActivity extends BaseActivity {
                     } else {
                         mal.delays = 0;
                         mal.saveAlarm(this, alarms[i]);
-                        MaimService.curctx.hangStat(CharStatus.IGNORED, System.currentTimeMillis() + 3600000);
+                        MaimService.mCurrentContext.hangStat(CharStatus.IGNORED, System.currentTimeMillis() + 3600000);
                     }
                 }
             } else {
@@ -362,10 +362,10 @@ public class ScheduleActivity extends BaseActivity {
             }
         }
         try {
-            Intent i = new Intent(MaimService.curctx, getClass());
+            Intent i = new Intent(MaimService.mCurrentContext, getClass());
             i.putExtra("alarms", alarms);
             raiseChk();
-            MaimService.curctx.setHangHint(R.drawable.hint, l("『[称呼]有没有忘记什么事？』查看>"), i, System.currentTimeMillis() + 540000l);
+            MaimService.mCurrentContext.setHangHint(R.drawable.hint, l("『[称呼]有没有忘记什么事？』查看>"), i, System.currentTimeMillis() + 540000l);
         } catch (Exception e) {
             Main.e(e);
         }

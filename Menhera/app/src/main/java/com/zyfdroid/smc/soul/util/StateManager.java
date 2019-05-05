@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 import java.util.*;
 
 public class StateManager
@@ -76,9 +76,6 @@ public class StateManager
 		public String leaveText;
 		public int leaveImg;
 		public CtxRunnable special;
-
-
-
 		public String getNotifyText(){
 			return notifyText;
 		}
@@ -93,7 +90,6 @@ public class StateManager
 			return largeImg
 				[(int)(largeImg.length*Math.random())];
 		}
-		
 		public String getLeaveText(){
 			return leaveText;
 		}

@@ -6,9 +6,9 @@ import android.content.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
 
-import com.zyfdroid.smc.base.*;
+import com.zyfdroid.smc.soul.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.service.*;
 
 public class AlarmListActivity extends BaseActivity
 {
@@ -124,8 +124,8 @@ public class AlarmListActivity extends BaseActivity
 	public void onBackPressed()
 	{
 		
-		if(null!=MaimService.curctx){
-		MaimService.curctx.checkScheduleWhileOff();
+		if(null!=MaimService.mCurrentContext){
+		MaimService.mCurrentContext.checkScheduleWhileOff();
 		}else{
 			startService(new Intent(this,MaimService.class));
 		}

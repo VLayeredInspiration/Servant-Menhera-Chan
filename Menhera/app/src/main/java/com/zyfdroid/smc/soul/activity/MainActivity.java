@@ -1,14 +1,9 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.soul.activity;
 
-import android.view.*;
-import android.widget.*;
-import android.app.*;
-import android.os.*;
 import android.content.*;
-import android.provider.*;
-import android.net.*;
-import com.zyfdroid.smc.base.*;
-import com.zyfdroid.smc.service.*;
+
+import com.zyfdroid.smc.soul.base.*;
+import com.zyfdroid.smc.soul.service.*;
 
 public class MainActivity extends BaseActivity 
 {

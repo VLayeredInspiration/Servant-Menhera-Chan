@@ -12,9 +12,9 @@ import android.view.View.*;
 import android.widget.TimePicker.*;
 import android.widget.SeekBar.*;
 
-import com.zyfdroid.smc.base.*;
+import com.zyfdroid.smc.soul.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.util.*;
 
 public class AlarmEditActivity extends BaseActivity {
     long currentAlarmId;

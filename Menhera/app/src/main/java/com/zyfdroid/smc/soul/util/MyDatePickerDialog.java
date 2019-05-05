@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 import android.app.*;
 import android.content.*;
 import android.os.*;

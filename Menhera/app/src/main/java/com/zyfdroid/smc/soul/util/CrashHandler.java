@@ -1,5 +1,5 @@
 
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 
   
 import java.io.File;  
@@ -26,9 +26,8 @@ import android.util.Log;
 import android.widget.Toast;
 import android.app.*;
 import android.content.*;
-import com.zyfdroid.smc.activity.*;
-import android.app.PendingIntent.*;  
-  
+import com.zyfdroid.smc.soul.activity.*;
+
 /** 
   * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告. 
   *  

@@ -5,7 +5,6 @@ import java.util.*;
 import android.annotation.SuppressLint;
 import android.content.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.base.*;
 
 public class MyAlarm {
     public static final int[] typeIcons = new int[]{

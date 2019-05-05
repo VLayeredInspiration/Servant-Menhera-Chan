@@ -1,6 +1,6 @@
-package com.zyfdroid.smc.receiver;
+package com.zyfdroid.smc.soul.receiver;
 import android.content.*;
-import com.zyfdroid.smc.activity.*;
+import com.zyfdroid.smc.soul.activity.*;
 
 public class BootReceiver extends BroadcastReceiver
 {

@@ -1,6 +1,7 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 import com.zyfdroid.smc.*;
 
+@Deprecated
 public enum CharStatus
 {
 	NORM1(R.drawable.norm,"『有什么需要，[称呼]可以随时来找我！』",

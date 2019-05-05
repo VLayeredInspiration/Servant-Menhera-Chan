@@ -3,15 +3,15 @@ package com.zyfdroid.smc.abilties;
 import android.content.Context;
 
 /**
- * Created by Lenovo on 2019/3/14.
+ * 一目了然 的信息提供类
  */
 
-public abstract class ShortMessageProvider<T extends AbilityEntry> {
+public abstract class ShortMessageProvider{
     String description;
 
     public ShortMessageProvider(String description) {
         this.description = description;
     }
 
-    public abstract void getString(Context ctx, T provider);
+    public abstract String getString(Context ctx, AbilityEntry provider);
 }

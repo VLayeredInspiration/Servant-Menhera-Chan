@@ -4,27 +4,21 @@ import android.content.Context;
 
 import com.zyfdroid.smc.Main;
 
-import java.lang.reflect.InvocationTargetException;
-
 /**
- * Created by Lenovo on 2019/3/15.
+ * 用来统一调用事件的类
  */
 
 public class AbilityEventHelper {
-    public void callNewDay(Context ctx){
-        callAbilityEvens(ctx,"onNewDay");
-    }
-    public void callTimeInterval(Context ctx){
-        callAbilityEvens(ctx,"onTimeInterval");
-    }
-    public void callScreenOn(Context ctx){
-        callAbilityEvens(ctx,"onScreenOn");
-    }
-    public void callScreenOff(Context ctx){
-        callAbilityEvens(ctx,"onScreenOff");
-    }
+    public static void callNewDay(Context ctx){callAbilityEvents(ctx,"onNewDay");}
+    public static void callTimeInterval(Context ctx){
 
-    private void callAbilityEvens(Context ctx,String eventName){
+
+        callAbilityEvents(ctx,"onTimeInterval");
+    }
+    public static void callScreenOn(Context ctx){callAbilityEvents(ctx,"onScreenOn");}
+    public static void callScreenOff(Context ctx){callAbilityEvents(ctx,"onScreenOff");}
+
+    private static void callAbilityEvents(Context ctx, String eventName){
         for(AbilityEntry ability : AbilityManager.servantAbilities.values()){
             IAbilityEventListener abilityEventListener=ability.mAbilityEventListener;
             if(null!=abilityEventListener){

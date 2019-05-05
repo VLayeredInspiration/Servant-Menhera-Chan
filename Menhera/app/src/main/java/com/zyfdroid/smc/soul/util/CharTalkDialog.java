@@ -1,8 +1,7 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 
 import android.app.*;
 import android.os.*;
-import android.content.*;
 import android.widget.*;
 
 import java.util.*;
@@ -10,9 +9,8 @@ import java.util.*;
 import android.view.View.*;
 import android.view.*;
 
-import com.zyfdroid.smc.activity.*;
+import com.zyfdroid.smc.abilties.schedule.AlarmHint;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.base.*;
 
 public class CharTalkDialog extends Dialog {
     TimerTask timerHandler = null;

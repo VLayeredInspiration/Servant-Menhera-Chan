@@ -8,13 +8,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.zyfdroid.smc.Main;
-import com.zyfdroid.smc.receiver.CommonAlarmReceiver;
+import com.zyfdroid.smc.soul.receiver.CommonAlarmReceiver;
 
 public abstract class AbilityEntry {
     public int icon;
     public String caption;
     public String abilityKey;
-    public ShortMessageProvider<?> shortMessageProvider;
+    public ShortMessageProvider shortMessageProvider;
     public int GID=-1;
 
     public IAbilityEventListener mAbilityEventListener;
@@ -23,7 +23,7 @@ public abstract class AbilityEntry {
         this.mAbilityEventListener = mAbilityEventListener;
     }
 
-    public void setShortMessageProvider(ShortMessageProvider<?> shortMessageProvider) {
+    public void setShortMessageProvider(ShortMessageProvider shortMessageProvider) {
         this.shortMessageProvider = shortMessageProvider;
     }
 
@@ -52,12 +52,12 @@ public abstract class AbilityEntry {
 
 
     public void setAlarm(Context ctx, long timeMillisecond, Bundle datas){
+
         Intent i=new Intent(ctx, CommonAlarmReceiver.class);
         i.putExtra(CommonAlarmReceiver.ALARM_INFO_BUNDLE_KEY,datas);
         i.putExtra(Main.ABILITY_TAG,abilityKey);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(ctx,GID,i,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager.AlarmClockInfo alarmClockInfo=new AlarmManager.AlarmClockInfo(timeMillisecond,pendingIntent);
     }
-
 
 }

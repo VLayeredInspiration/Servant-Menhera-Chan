@@ -1,9 +1,9 @@
-package com.zyfdroid.smc.receiver;
+package com.zyfdroid.smc.soul.receiver;
 import android.content.*;
 import android.os.*;
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.service.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.activity.*;
+import com.zyfdroid.smc.soul.activity.*;
 
 public class ScreenOnReceiver extends BroadcastReceiver
 {
@@ -11,15 +11,15 @@ public class ScreenOnReceiver extends BroadcastReceiver
 	@Override
 	public void onReceive(Context p1, Intent p2)
 	{
-		if(null!=MaimService.curctx){
+		if(null!=MaimService.mCurrentContext){
 			try{
 				if(p2.getAction().contentEquals(p2.ACTION_SCREEN_OFF)){
 					Main.d("ScreenOffReceiver");
 					try{
-					MaimService.curctx.mWakeLock = MaimService.curctx.mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MainService");  
-					MaimService.curctx.mWakeLock.acquire(10000);
-					MaimService.curctx.checkScheduleWhileOff();
-					MaimService.curctx.serviceThread.interrupt();
+					MaimService.mCurrentContext.mWakeLock = MaimService.mCurrentContext.mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MainService");
+					MaimService.mCurrentContext.mWakeLock.acquire(10000);
+					MaimService.mCurrentContext.checkScheduleWhileOff();
+					MaimService.mCurrentContext.serviceThread.interrupt();
 					}catch(NullPointerException npe){
 						Main.e(npe);
 						Main.d("Service not available, Ignoring.");
@@ -27,9 +27,9 @@ public class ScreenOnReceiver extends BroadcastReceiver
 				}
 				else{
 					Main.d("ScreenOnReveiver");
-					MaimService.curctx.resumeTask();
-			MaimService.curctx.checkScheduleWhileOff();
-			MaimService.curctx.checkState();
+					MaimService.mCurrentContext.resumeTask();
+			MaimService.mCurrentContext.checkScheduleWhileOff();
+			MaimService.mCurrentContext.checkState();
 			}
 			}catch(Exception e){
 				Main.e(e);

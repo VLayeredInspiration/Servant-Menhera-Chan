@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.soul.activity;
 
 import android.annotation.SuppressLint;
 import android.view.*;
@@ -13,10 +13,10 @@ import android.util.*;
 
 import com.zyfdroid.smc.abilties.AbilityEntry;
 import com.zyfdroid.smc.abilties.AbilityManager;
-import com.zyfdroid.smc.base.*;
+import com.zyfdroid.smc.soul.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.util.*;
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.util.*;
+import com.zyfdroid.smc.soul.service.*;
 
 public class MenheraActivity extends BaseActivity {
     ImageView clickn_charimg;
@@ -33,8 +33,8 @@ public class MenheraActivity extends BaseActivity {
         baseView.startAnimation(anime);
         CharStatus cst = CharStatus.NORM1;
         try {
-            if (null != MaimService.curctx.status) {
-                cst = MaimService.curctx.status;
+            if (null != MaimService.mCurrentContext.status) {
+                cst = MaimService.mCurrentContext.status;
             }
         } catch (NullPointerException e) {
             Main.e(e);
@@ -43,11 +43,11 @@ public class MenheraActivity extends BaseActivity {
         fti(R.id.clickn_charsay).setText(l(cst.clicknText));
         fii(R.id.clickn_charimg).setImageResource(cst.clicknImg);
         if (cst.equals(CharStatus.NORM_DOZE)) {
-            MaimService.curctx.hangStat(CharStatus.NORM_INAT, System.currentTimeMillis() + 3l * 60l * 1000l);
+            MaimService.mCurrentContext.hangStat(CharStatus.NORM_INAT, System.currentTimeMillis() + 3l * 60l * 1000l);
         }
 
         if (cst.equals(CharStatus.NIGHT)) {
-            MaimService.curctx.hangStat(CharStatus.NIGHT_WAKE, System.currentTimeMillis() + 4l * 60l * 1000l);
+            MaimService.mCurrentContext.hangStat(CharStatus.NIGHT_WAKE, System.currentTimeMillis() + 4l * 60l * 1000l);
         }
 
 
@@ -58,16 +58,16 @@ public class MenheraActivity extends BaseActivity {
     public void onUiPrepared() {
         CharStatus cst = CharStatus.NORM1;
         try {
-            if (null != MaimService.curctx.status) {
-                cst = MaimService.curctx.status;
+            if (null != MaimService.mCurrentContext.status) {
+                cst = MaimService.mCurrentContext.status;
             }
         } catch (NullPointerException e) {
             Main.e(e);
             startService(new Intent(this, MaimService.class));
         }
         if (cst.equals(CharStatus.IGNORED)) {
-            MaimService.curctx.stattilltime = -1;
-            MaimService.curctx.changeNotifican(-1, null, null);
+            MaimService.mCurrentContext.stattilltime = -1;
+            MaimService.mCurrentContext.changeNotifican(-1, null, null);
         }
 
         LinearLayout.LayoutParams lap = (LinearLayout.LayoutParams) clickn_charimg.getLayoutParams();
@@ -135,7 +135,7 @@ public class MenheraActivity extends BaseActivity {
         if (!misFinishing) {
 
             // A EasterEgg
-            if (Math.random() < 0.1 && (MaimService.curctx.status == CharStatus.NORM3 || MaimService.curctx.status == CharStatus.NORM2 || MaimService.curctx.status == CharStatus.NORM1)) {
+            if (Math.random() < 0.1 && (MaimService.mCurrentContext.status == CharStatus.NORM3 || MaimService.mCurrentContext.status == CharStatus.NORM2 || MaimService.mCurrentContext.status == CharStatus.NORM1)) {
                 clickn_charimg.setImageResource(R.drawable.jogging);
                 clickn_charsay.setText("溜了溜了～");
             }

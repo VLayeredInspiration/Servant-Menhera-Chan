@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.soul.activity;
 import android.*;
 import android.app.*;
 import android.content.*;
@@ -11,8 +11,8 @@ import android.support.v4.content.*;
 import android.view.*;
 import android.widget.*;
 import com.zyfdroid.smc.R;
-import com.zyfdroid.smc.base.*;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.base.*;
+import com.zyfdroid.smc.soul.util.*;
 import java.util.*;
 import com.zyfdroid.smc.*;
 

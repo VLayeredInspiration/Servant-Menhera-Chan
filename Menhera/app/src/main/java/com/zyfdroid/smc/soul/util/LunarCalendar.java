@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.util;
+package com.zyfdroid.smc.soul.util;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.base;
+package com.zyfdroid.smc.abilties.schedule;
 
 public class AlarmHint{
 	public String imgid;

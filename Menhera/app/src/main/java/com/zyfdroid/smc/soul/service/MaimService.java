@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.service;
+package com.zyfdroid.smc.soul.service;
 
 import android.app.*;
 import android.content.*;
@@ -14,25 +14,27 @@ import android.app.KeyguardManager.KeyguardLock;
 
 import java.util.*;
 
+import com.zyfdroid.smc.abilties.AbilityEventHelper;
+import com.zyfdroid.smc.abilties.AbilityManager;
 import com.zyfdroid.smc.abilties.schedule.MissedAlarmActivity;
 import com.zyfdroid.smc.abilties.schedule.MyAlarm;
+import com.zyfdroid.smc.abilties.schedule.Schedule;
 import com.zyfdroid.smc.abilties.schedule.ScheduleActivity;
-import com.zyfdroid.smc.receiver.*;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.receiver.*;
+import com.zyfdroid.smc.soul.util.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.activity.*;
+import com.zyfdroid.smc.soul.activity.*;
 
 public class MaimService extends Service implements Runnable {
     public static String refer = "主人";
     public static int interval = 60000;
     public static int bgcolor = 0xffB9E6FF;
-    public static MaimService curctx;
+    public static MaimService mCurrentContext;
     private Intent hangIntent;
     Date d = new Date();
     private int hangImg;
     private String hangText;
-    public ScreenOnReceiver shr;
-    //Timer timetask=null;
+    public ScreenOnReceiver screenOnReceiver;
     private long hangTill = -1;
     public CharStatus status = CharStatus.NORM1;
     // 键盘管理器
@@ -57,7 +59,7 @@ public class MaimService extends Service implements Runnable {
     public void onCreate() {
 
         super.onCreate();
-        curctx = this;
+        mCurrentContext = this;
         serviceThread = null;
         mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
@@ -65,9 +67,8 @@ public class MaimService extends Service implements Runnable {
         final IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
-        shr = new ScreenOnReceiver();
-        registerReceiver(shr, filter);
-        lts = System.currentTimeMillis() + timeBeforeNextMinute(60000L) - 60000L;
+        screenOnReceiver = new ScreenOnReceiver();
+        registerReceiver(screenOnReceiver, filter);
         Main.d("OnServiceCreated.....................");
     }
 
@@ -76,6 +77,7 @@ public class MaimService extends Service implements Runnable {
 
     Thread chkScheduleThread;
 
+    //TODO: bookmark, perform DayStamp
 
     public void setHangHint(int charset, String text, Intent act, long till) {
         this.hangImg = charset;
@@ -101,6 +103,9 @@ public class MaimService extends Service implements Runnable {
 
 
     public void checkScheduleWhileOff() {
+        AbilityEventHelper.callScreenOff(this);
+
+
         if (null != chkScheduleThread) {
             chkScheduleThread.interrupt();
             chkScheduleThread = null;
@@ -160,6 +165,7 @@ public class MaimService extends Service implements Runnable {
         chkScheduleThread.start();
     }
 
+    @Deprecated
     synchronized void setAlarmClock(long triggleTime, long[] alarmIds) {
         if (null == alarmIds && triggleTime != -1) {
             Main.e(new NullPointerException("alarms is null but trigger time is not -1"));
@@ -235,7 +241,7 @@ public class MaimService extends Service implements Runnable {
         if (mids.length != 0) {
             Intent i = new Intent(this, MissedAlarmActivity.class);
             i.putExtra("alarms", mids);
-            i.addFlags(i.FLAG_ACTIVITY_NEW_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }
     }
@@ -256,44 +262,13 @@ public class MaimService extends Service implements Runnable {
         }
     }
 
+    //TODO Unimplemented method
     String getSubStr() {
+        //TODO implements this::
+        Schedule s= (Schedule) AbilityManager.servantAbilities.get("_alarm");
+        return s.shortMessageProvider.getString(this,s);
+        //Temp code
 
-        long hookTime = -1;
-        MyAlarm mal = null;
-        long[] ids = MyAlarm.getAllAlarm(MaimService.this);
-        for (int i = 0; i < ids.length; i++) {
-            mal = MyAlarm.loadAlarm(MaimService.this, ids[i]);
-            if (mal.enabled && mal.targetTime > System.currentTimeMillis() + 15000l) {
-                if (hookTime == -1) {
-                    hookTime = mal.targetTime;
-                }
-                if (mal.targetTime <= hookTime) {
-                    hookTime = mal.targetTime;
-                }
-            }
-        }
-
-
-        StringBuilder sb = new StringBuilder("下个提醒:");
-        if (hookTime > 0) {
-            Date targetTime = new Date(hookTime);
-            sb.append(targetTime.getMonth() + 1);
-            sb.append("月").append(targetTime.getDate()).append("日");
-
-
-            if (targetTime.getHours() < 10) {
-                sb.append("0");
-            }
-            sb.append(targetTime.getHours());
-            sb.append(":");
-            if (targetTime.getMinutes() < 10) {
-                sb.append("0");
-            }
-            sb.append(targetTime.getMinutes());
-            return sb.toString();
-        } else {
-            return "没有提醒任务。";
-        }
     }
 
     public void changeNotifican(int avator, String mainstr, String substr) {
@@ -399,8 +374,6 @@ public class MaimService extends Service implements Runnable {
 
 
     }
-
-
     private void changeNotificationImpl21(int avator, String mainstr, String substr) {
 
 
@@ -505,7 +478,7 @@ public class MaimService extends Service implements Runnable {
     }
 
     public void resumeTask() {
-
+        AbilityEventHelper.callScreenOn(this);
         prepareTask();
     }
 
@@ -612,13 +585,12 @@ public class MaimService extends Service implements Runnable {
         if (null != serviceThread) {
             serviceThread.interrupt();
         }
-        curctx = null;
-        unregisterReceiver(shr);
+        mCurrentContext = null;
+        unregisterReceiver(screenOnReceiver);
         super.onDestroy();
     }
 
-    long lts = 0;
-    int tmc = 0;
+    //long lts = 0;
     public Thread serviceThread = null;
 
     @Override
@@ -626,6 +598,7 @@ public class MaimService extends Service implements Runnable {
         try {
             while (true) {
                 if (mPowerManager.isScreenOn()) {
+                    AbilityEventHelper.callTimeInterval(this);
                     checkState();
                 } else {
                     serviceThread = null;

@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.activity;
+package com.zyfdroid.smc.soul.activity;
 import android.app.*;
 import android.os.*;
 import android.widget.*;

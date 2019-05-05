@@ -5,9 +5,9 @@ import android.view.*;
 import android.widget.*;
 import android.os.*;
 
-import com.zyfdroid.smc.base.*;
+import com.zyfdroid.smc.soul.base.*;
 import com.zyfdroid.smc.*;
-import com.zyfdroid.smc.service.*;
+import com.zyfdroid.smc.soul.service.*;
 
 public class MissedAlarmActivity extends BaseActivity {
 
@@ -65,7 +65,7 @@ public class MissedAlarmActivity extends BaseActivity {
             mal.saveAlarm(this, alarmId[i]);
         }
         try {
-            MaimService.curctx.cancelHang();
+            MaimService.mCurrentContext.cancelHang();
         } catch (Exception e) {
         }
         finishAndRemoveTask();

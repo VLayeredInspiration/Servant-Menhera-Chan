@@ -1,4 +1,4 @@
-package com.zyfdroid.smc.receiver;
+package com.zyfdroid.smc.soul.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

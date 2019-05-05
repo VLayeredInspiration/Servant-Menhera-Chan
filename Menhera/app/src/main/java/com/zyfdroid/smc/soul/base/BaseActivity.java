@@ -1,15 +1,11 @@
-package com.zyfdroid.smc.base;
+package com.zyfdroid.smc.soul.base;
 
 import android.app.*;
 import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
-import android.media.*;
 import android.os.*;
-import android.support.annotation.RequiresApi;
-import android.text.*;
-import android.util.*;
 import android.view.*;
 import android.widget.*;
 
@@ -17,8 +13,7 @@ import java.io.*;
 
 import android.support.v4.widget.*;
 
-import com.zyfdroid.smc.service.*;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.service.*;
 
 
 public class BaseActivity extends Activity {

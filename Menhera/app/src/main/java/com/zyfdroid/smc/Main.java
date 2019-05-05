@@ -2,12 +2,10 @@ package com.zyfdroid.smc;
 
 import android.app.*;
 import android.content.*;
+import android.os.Environment;
 
-import com.zyfdroid.smc.abilties.AbilityEntry;
 import com.zyfdroid.smc.abilties.AbilityManager;
-import com.zyfdroid.smc.abilties.schedule.Schedule;
-import com.zyfdroid.smc.abilties.preference.Settings;
-import com.zyfdroid.smc.util.*;
+import com.zyfdroid.smc.soul.util.*;
 
 import java.io.*;
 import java.util.*;
@@ -45,7 +43,7 @@ public class Main extends Application {
     private void initLogs(){
         if (logOn) {
             try {
-                stdOut = new PrintStream("/sdcard/AppCrashs/log.log");
+                stdOut = new PrintStream(Environment.getExternalStorageDirectory().getPath()+"/AppCrashs/"+System.currentTimeMillis()+".log");
             } catch (FileNotFoundException e) {
             }
         }
