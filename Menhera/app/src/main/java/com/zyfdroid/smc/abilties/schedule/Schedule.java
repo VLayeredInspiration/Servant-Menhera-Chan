@@ -11,6 +11,7 @@ import com.zyfdroid.smc.abilties.IAbilityEventListener;
 import com.zyfdroid.smc.abilties.ShortMessageProvider;
 import com.zyfdroid.smc.soul.service.MaimService;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -87,7 +88,7 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
 
     @Override
     public void onScreenOn(Context ctx) {
-
+        checkMissingSchedule(ctx);
     }
 
     @Override
@@ -101,10 +102,7 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
     }
 
 
-    public void setAlarms(Context ctx){
 
-
-    }
 
 
     public static void requireNext(Context ctx) {
@@ -116,4 +114,34 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
             ctx.startService(new Intent(ctx, MaimService.class));
         }
     }
+
+
+    void checkMissingSchedule(Context ctx) {
+
+        MyAlarm mal = null;
+        ArrayList<Long> missedAlarmId = new ArrayList<Long>();
+        long[] ids = MyAlarm.getAllAlarm(ctx);
+        for (int i = 0; i < ids.length; i++) {
+            mal = MyAlarm.loadAlarm(ctx, ids[i]);
+            if (mal.targetTime <= System.currentTimeMillis() - 90000l) {
+                if (mal.enabled) {
+                    missedAlarmId.add(ids[i]);
+                } else {
+                    mal.targetTime = mal.nextTime();
+                    mal.saveAlarm(ctx, ids[i]);
+                }
+            }
+        }
+        long[] mids = new long[missedAlarmId.size()];
+        for (int i = 0; i < mids.length; i++) {
+            mids[i] = missedAlarmId.get(i);
+        }
+        if (mids.length != 0) {
+            Intent i = new Intent(ctx, MissedAlarmActivity.class);
+            i.putExtra("alarms", mids);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ctx.startActivity(i);
+        }
+    }
+
 }

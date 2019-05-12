@@ -31,7 +31,7 @@ public class MaimService extends Service implements Runnable {
     public static int bgcolor = 0xffB9E6FF;
     public static MaimService mCurrentContext;
     private Intent hangIntent;
-    Date d = new Date();
+    McDate d = new McDate();
     private int hangImg;
     private String hangText;
     public ScreenOnReceiver screenOnReceiver;
@@ -72,6 +72,10 @@ public class MaimService extends Service implements Runnable {
         Main.d("OnServiceCreated.....................");
     }
 
+    public static Context getGlobalContext(){
+        return mCurrentContext;
+    }
+
     public PowerManager.WakeLock mWakeLock = null;
 
 
@@ -100,6 +104,8 @@ public class MaimService extends Service implements Runnable {
         stattilltime = tilltime;
         changeNotifican(-1, null, null);
     }
+
+
 
 
     public void checkScheduleWhileOff() {
@@ -213,38 +219,11 @@ public class MaimService extends Service implements Runnable {
         if (d.getHours() < 6 && d.getHours() >= 2) {
             status = CharStatus.DEEP_NIGHT;
         }
-        checkMissingSchedule();
         changeNotifican(-1, null, null);
     }
 
 
-    void checkMissingSchedule() {
 
-        MyAlarm mal = null;
-        ArrayList<Long> missedAlarmId = new ArrayList<Long>();
-        long[] ids = MyAlarm.getAllAlarm(MaimService.this);
-        for (int i = 0; i < ids.length; i++) {
-            mal = MyAlarm.loadAlarm(MaimService.this, ids[i]);
-            if (mal.targetTime <= System.currentTimeMillis() - 90000l) {
-                if (mal.enabled) {
-                    missedAlarmId.add(ids[i]);
-                } else {
-                    mal.targetTime = mal.nextTime();
-                    mal.saveAlarm(this, ids[i]);
-                }
-            }
-        }
-        long[] mids = new long[missedAlarmId.size()];
-        for (int i = 0; i < mids.length; i++) {
-            mids[i] = missedAlarmId.get(i);
-        }
-        if (mids.length != 0) {
-            Intent i = new Intent(this, MissedAlarmActivity.class);
-            i.putExtra("alarms", mids);
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-        }
-    }
 
     //invoke checking alarms at other context
 

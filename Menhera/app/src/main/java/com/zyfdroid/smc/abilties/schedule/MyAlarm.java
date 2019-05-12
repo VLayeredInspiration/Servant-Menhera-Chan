@@ -5,6 +5,7 @@ import java.util.*;
 import android.annotation.SuppressLint;
 import android.content.*;
 import com.zyfdroid.smc.*;
+import com.zyfdroid.smc.soul.util.McDate;
 
 public class MyAlarm {
     public static final int[] typeIcons = new int[]{
@@ -105,7 +106,7 @@ public class MyAlarm {
     public String alarmTitle = "";
 
     private MyAlarm() {
-        Date def = new Date();
+        McDate def = new McDate();
         month = def.getMonth() + 1;
         dayofmonth = def.getDate();
         hour = def.getHours();
@@ -148,7 +149,7 @@ public class MyAlarm {
     }
 
     public static boolean isOddWeek(long time) {
-        Date d = new Date(time);
+        McDate d = new McDate(time);
         time = time - ((long) d.getTimezoneOffset() * 60000l);
         return ((time + 4l * 86400000L) / (7l * 24l * 60l * 60l * 1000l)) % 2l == 0l;
 
@@ -179,7 +180,7 @@ public class MyAlarm {
     }
 
     public long nextTime() {
-        Date date = new Date();
+        McDate date = new McDate();
         date.setTime(System.currentTimeMillis());
         Calendar cld = Calendar.getInstance();
         switch (type) {
@@ -215,8 +216,9 @@ public class MyAlarm {
     }
 
     private long nextIntervalAlarmTime(long t, int h, int m, int i, int o, int d) {
-        Date date = new Date(t);
-        long targetDay = ((((t / (24l * 60l * 60l * 1000L)) / i) - 1) * i) * (24l * 60l * 60l * 1000l) + (((long) date.getTimezoneOffset()) * 60l * 1000l) + o * 86400000l;
+        McDate date = new McDate(t);
+        long targetDay = ((((t / (24L * 60L * 60L * 1000L)) / i) - 1) * i) * (24L * 60L * 60L * 1000L) +
+                (( date.getTimezoneOffset()) * 60L * 1000L) + o * 86400000L;
         Calendar cld2 = Calendar.getInstance();
         cld2.setTimeInMillis(targetDay);
         cld2.set(Calendar.HOUR_OF_DAY, h);
@@ -234,11 +236,11 @@ public class MyAlarm {
 
     public long nextDayTime() {
         delays = 0;
-        Date date = new Date(System.currentTimeMillis());
+        McDate date = new McDate(System.currentTimeMillis());
         date.setHours(0);
         date.setMinutes(0);
         date.setSeconds(0);
-        date.setTime(date.getTime() + 86400000l);
+        date.setTime(date.getTime() + 86400000L);
         Calendar cld = Calendar.getInstance();
 
         cld.setTimeInMillis(System.currentTimeMillis());
@@ -256,7 +258,6 @@ public class MyAlarm {
                 cld.set(Calendar.SECOND, 0);
                 cld.set(Calendar.MILLISECOND, 0);
                 cld.get(Calendar.MILLISECOND);
-                //cld.add(cld.MINUTE,delays*10);
                 if (cld.getTimeInMillis() < date.getTime()) {
                     cld.add(Calendar.YEAR, 1);
                     return cld.getTimeInMillis();
@@ -278,7 +279,7 @@ public class MyAlarm {
     }
 
     //在这堆东西出了n个bug之后决定通通推翻重写
-    public long nextWeekAlarmTime(Calendar cld, Date date) {
+    public long nextWeekAlarmTime(Calendar cld, McDate date) {
         //以周计算的提醒。cld:传入一个日历，date，假定的当前时间，返回下次提醒的时间戳
         if (!enabled) {
             return -1;
@@ -466,7 +467,7 @@ public class MyAlarm {
     public String getNextStr() {
         //if(!enabled){return "不会";}
         StringBuilder sb = new StringBuilder("在");
-        Date d = new Date(targetTime);
+        McDate d = new McDate(targetTime);
         sb.append(d.getYear() + 1900).append("年");
         String[] arw = {"日", "一", "二", "三", "四", "五", "六"};
         sb.append(d.getMonth() + 1).append("月");
@@ -532,7 +533,7 @@ public class MyAlarm {
                     cst.hintText = randomOne("早上好，[称呼]！", "早安，[称呼]！", "今天又是元气满满的一天呢，[称呼]");
                 } else {
                     cst.imgid = "ask";
-                    cst.hintText = "[称呼]，这个点的早安。。。是什么意思？？？";
+                    cst.hintText = "[称呼]，这个时间,是早上到了吗?";
                 }
                 break;
 

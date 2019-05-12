@@ -1,5 +1,6 @@
 /Menhera/app/build
 /Menhera/build
 /Menhera/.gradle
+/Menhera/gradle
 /Menhera/.idea
 *.bak
