@@ -7,6 +7,7 @@ import android.os.PowerManager;
 
 import com.zyfdroid.smc.R;
 import com.zyfdroid.smc.abilties.AbilityEntry;
+import com.zyfdroid.smc.abilties.AbilityManager;
 import com.zyfdroid.smc.abilties.IAbilityEventListener;
 import com.zyfdroid.smc.abilties.ShortMessageProvider;
 import com.zyfdroid.smc.soul.service.MaimService;
@@ -16,6 +17,10 @@ import java.util.Date;
 
 
 public class Schedule extends AbilityEntry implements IAbilityEventListener{
+
+    public static Schedule getInstance(){
+        return (Schedule) AbilityManager.servantAbilities.get("_alarm");
+    }
 
     @Override
     public void onAbilityInit(Context ctx) {
@@ -82,18 +87,22 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
 
     @Override
     public void onAlarm(Context ctx, Bundle datas) {
-
+        Intent i=new Intent(ctx,ScheduleActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("alarms",datas.getLongArray("alarms"));
+        ctx.startActivity(i);
     }
 
 
     @Override
     public void onScreenOn(Context ctx) {
         checkMissingSchedule(ctx);
+        calculateAlarmClock(ctx);
     }
 
     @Override
     public void onScreenOff(Context ctx) {
-
+        calculateAlarmClock(ctx);
     }
 
     @Override
@@ -106,13 +115,7 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
 
 
     public static void requireNext(Context ctx) {
-        try {
-            MaimService.mCurrentContext.mWakeLock = MaimService.mCurrentContext.mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MainService");
-            MaimService.mCurrentContext.mWakeLock.acquire(10000);
-            MaimService.mCurrentContext.checkScheduleWhileOff();
-        } catch (Exception e) {
-            ctx.startService(new Intent(ctx, MaimService.class));
-        }
+
     }
 
 
@@ -142,6 +145,48 @@ public class Schedule extends AbilityEntry implements IAbilityEventListener{
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             ctx.startActivity(i);
         }
+    }
+
+
+    void calculateAlarmClock(Context ctx){
+        long hookTime = -1;
+        MyAlarm mal = null;
+        ArrayList<Long> firstAlarmId = new ArrayList<Long>();
+        long[] ids = MyAlarm.getAllAlarm(ctx);
+        for (int i = 0; i < ids.length; i++) {
+            mal = MyAlarm.loadAlarm(ctx, ids[i]);
+            if (mal.enabled && mal.targetTime > System.currentTimeMillis() + 0l) {
+                if (hookTime == -1) {
+                    hookTime = mal.targetTime;
+                }
+                if (mal.targetTime <= hookTime) {
+                    hookTime = mal.targetTime;
+                }
+            }
+        }
+        for (int i = 0; i < ids.length; i++) {
+            mal = MyAlarm.loadAlarm(ctx, ids[i]);
+            if (mal.enabled && mal.targetTime - hookTime >= 0l && mal.targetTime - hookTime < 60l * 1000l) {
+                firstAlarmId.add(ids[i]);
+            }
+        }
+
+
+        if (hookTime != -1) {
+            long[] alarms = new long[firstAlarmId.size()];
+            for (int i = 0; i < firstAlarmId.size(); i++) {
+                alarms[i] = firstAlarmId.get(i);
+            }
+            setAlarmClock(ctx,hookTime, alarms);
+        } else {
+            setAlarmClock(ctx,-1, null);
+        }
+    }
+
+    public void setAlarmClock(Context ctx,long triggleTime, long[] alarmIds){
+        Bundle alarms=new Bundle();
+        alarms.putLongArray("alarms",alarmIds);
+        setAlarm(ctx,triggleTime,alarms);
     }
 
 }

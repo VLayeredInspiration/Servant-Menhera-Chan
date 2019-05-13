@@ -37,18 +37,10 @@ public class MaimService extends Service implements Runnable {
     public ScreenOnReceiver screenOnReceiver;
     private long hangTill = -1;
     public CharStatus status = CharStatus.NORM1;
-    // 键盘管理器
     KeyguardManager mKeyguardManager;
-    // 键盘锁
-    public KeyguardLock mKeyguardLock;
-    // 电源管理器
     public PowerManager mPowerManager;
-    // 唤醒锁
-    public PowerManager.WakeLock mWake;
     public AlarmManager mAlmMgr;
     public static final boolean fg = true;
-    public boolean confirmWakeUp = true;
-    public long confirmWakeUpTime = -1;
 
     @Override
     public IBinder onBind(Intent p1) {
@@ -79,10 +71,6 @@ public class MaimService extends Service implements Runnable {
     public PowerManager.WakeLock mWakeLock = null;
 
 
-    Thread chkScheduleThread;
-
-    //TODO: bookmark, perform DayStamp
-
     public void setHangHint(int charset, String text, Intent act, long till) {
         this.hangImg = charset;
         this.hangText = text;
@@ -106,93 +94,15 @@ public class MaimService extends Service implements Runnable {
     }
 
 
-
-
-    public void checkScheduleWhileOff() {
+    public void callOnScreenOff() {
+        try {
+            MaimService.this.mWakeLock = MaimService.this.mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, this.getClass().getName());
+            MaimService.this.mWakeLock.acquire(10000);
+        } catch (Exception e) {
+            startService(new Intent(getApplicationContext(), MaimService.class));
+        }
         AbilityEventHelper.callScreenOff(this);
-
-
-        if (null != chkScheduleThread) {
-            chkScheduleThread.interrupt();
-            chkScheduleThread = null;
-        }
-        chkScheduleThread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                long hookTime = -1;
-                MyAlarm mal = null;
-                ArrayList<Long> firstAlarmId = new ArrayList<Long>();
-                long[] ids = MyAlarm.getAllAlarm(MaimService.this);
-                for (int i = 0; i < ids.length; i++) {
-                    mal = MyAlarm.loadAlarm(MaimService.this, ids[i]);
-                    if (mal.enabled && mal.targetTime > System.currentTimeMillis() + 0l) {
-                        if (hookTime == -1) {
-                            hookTime = mal.targetTime;
-                        }
-                        if (mal.targetTime <= hookTime) {
-                            hookTime = mal.targetTime;
-                        }
-                    }
-                }
-                for (int i = 0; i < ids.length; i++) {
-                    mal = MyAlarm.loadAlarm(MaimService.this, ids[i]);
-                    if (mal.enabled && mal.targetTime - hookTime >= 0l && mal.targetTime - hookTime < 60l * 1000l) {
-                        firstAlarmId.add(ids[i]);
-                    }
-                }
-
-
-                if (hookTime != -1) {
-                    long[] alarms = new long[firstAlarmId.size()];
-                    for (int i = 0; i < firstAlarmId.size(); i++) {
-                        alarms[i] = firstAlarmId.get(i);
-                    }
-                    setAlarmClock(hookTime, alarms);
-                } else {
-                    setAlarmClock(-1, null);
-                }
-
-                changeNotifican(-1, null, null);
-
-
-                try {
-                    if (null != MaimService.this.mWakeLock && MaimService.this.mWakeLock.isHeld()) {
-                        MaimService.this.mWakeLock.release();
-                    }
-                } catch (Exception e) {
-                    Main.e(e);
-                }
-
-            }
-
-
-        });
-        chkScheduleThread.start();
     }
-
-    @Deprecated
-    synchronized void setAlarmClock(long triggleTime, long[] alarmIds) {
-        if (null == alarmIds && triggleTime != -1) {
-            Main.e(new NullPointerException("alarms is null but trigger time is not -1"));
-        }
-
-        Intent i = new Intent(this, ScheduleActivity.class);
-        i.putExtra("alarms", alarmIds);
-        PendingIntent p = PendingIntent.getActivity(this, 0, i, 0);
-
-        if (triggleTime == -1) {
-            mAlmMgr.cancel(p);
-            return;
-        }
-        AlarmManager.AlarmClockInfo aci = new AlarmManager.AlarmClockInfo(triggleTime, p);
-        Main.d("An alarm clock is set to " + new Date(triggleTime).toString());
-        mAlmMgr.setAlarmClock(aci, aci.getShowIntent());
-        //↑一个提醒也不会落下的秘诀
-    }
-
-
-    boolean isLockedBefore;
 
     public void checkState() {
         d.setTime(System.currentTimeMillis());
@@ -229,18 +139,6 @@ public class MaimService extends Service implements Runnable {
 
 
 
-    void relock() {
-        if (isLockedBefore) {
-            if (mWake != null) {
-                mWake.release();
-                mWake = null;
-            }
-            if (mKeyguardLock != null) {
-                mKeyguardLock.reenableKeyguard();
-            }
-        }
-    }
-
     //TODO Unimplemented method
     String getSubStr() {
         //TODO implements this::
@@ -253,10 +151,8 @@ public class MaimService extends Service implements Runnable {
     public void changeNotifican(int avator, String mainstr, String substr) {
         if (Build.VERSION.SDK_INT >= 26) {
             changeNotificationImpl26(avator, mainstr, substr);
-
         } else {
             changeNotificationImpl21(avator, mainstr, substr);
-
         }
     }
 
@@ -448,15 +344,15 @@ public class MaimService extends Service implements Runnable {
         if (fg) {
             createNotificatiion();
         }
+        callOnScreenOn();
         prepareTask();
-        checkScheduleWhileOff();
         checkState();
 
         return START_STICKY;
 
     }
 
-    public void resumeTask() {
+    public void callOnScreenOn() {
         AbilityEventHelper.callScreenOn(this);
         prepareTask();
     }
@@ -570,6 +466,9 @@ public class MaimService extends Service implements Runnable {
     }
 
     //long lts = 0;
+
+
+    //TODO: bookmark, perform DayStamp
     public Thread serviceThread = null;
 
     @Override

@@ -123,12 +123,7 @@ public class AlarmListActivity extends BaseActivity
 	@Override
 	public void onBackPressed()
 	{
-		
-		if(null!=MaimService.mCurrentContext){
-		MaimService.mCurrentContext.checkScheduleWhileOff();
-		}else{
-			startService(new Intent(this,MaimService.class));
-		}
+		Schedule.getInstance().calculateAlarmClock(this);
 		super.onBackPressed();
 	}
 	

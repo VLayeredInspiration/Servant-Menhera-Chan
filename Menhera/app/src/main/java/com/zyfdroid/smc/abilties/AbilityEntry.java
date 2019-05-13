@@ -51,13 +51,24 @@ public abstract class AbilityEntry {
     }
 
 
-    public void setAlarm(Context ctx, long timeMillisecond, Bundle datas){
-
-        Intent i=new Intent(ctx, CommonAlarmReceiver.class);
-        i.putExtra(CommonAlarmReceiver.ALARM_INFO_BUNDLE_KEY,datas);
-        i.putExtra(Main.ABILITY_TAG,abilityKey);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(ctx,GID,i,PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager.AlarmClockInfo alarmClockInfo=new AlarmManager.AlarmClockInfo(timeMillisecond,pendingIntent);
+    public void setAlarm(final Context ctx,final long timeMillisecond,final Bundle datas){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if(timeMillisecond !=-1) {
+                    Intent i = new Intent(ctx, CommonAlarmReceiver.class);
+                    i.putExtra(CommonAlarmReceiver.ALARM_INFO_BUNDLE_KEY, datas);
+                    i.putExtra(Main.ABILITY_TAG, abilityKey);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(ctx, GID, i, PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(timeMillisecond, pendingIntent);
+                    AlarmManager alarmMgr = ((AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE));
+                    alarmMgr.setAlarmClock(alarmClockInfo, pendingIntent);//耗时操作,需要放进线程
+                }else {
+                    AlarmManager alarmMgr = ((AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE));
+                    alarmMgr.cancel(PendingIntent.getBroadcast(ctx,GID,new Intent(),PendingIntent.FLAG_UPDATE_CURRENT));
+                }
+            }
+        }).start();
     }
 
 }
