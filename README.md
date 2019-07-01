@@ -92,7 +92,7 @@ P.S. Do not use the fxxking "Instant Run" in Android Studio
 <br>
 
 
-最近参加比赛训练，提交会变没有
+7月5日之后继续搞
 
 
 <br>
