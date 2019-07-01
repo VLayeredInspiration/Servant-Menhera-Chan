@@ -48,7 +48,6 @@ P.S. Do not use the fxxking "Instant Run" in Android Studio
 <br>
 
 
->来自上海市经济管理学校 手机编程社
 <br>
 
 >本作品暂无版权，开源。内有未经授权的美术作品，请在使用时尊重原作者的著作权。
